@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Cines35mm</string>
+    <string name="main_Home">Home</string>
+    <string name="main_Fav">Favourites</string>
+    <string name="main_Search">Search</string>
+    <string name="main_Options">Options</string>
 </resources>
