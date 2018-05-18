@@ -1,7 +1,12 @@
 package cr.ac.tec.ec.cines35mm;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -10,4 +15,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+    public void buttonOnClick(View v){
+        Button fav = findViewById(R.id.main_btnFav);
+        Intent fav_screen = new Intent(this, FavActivity.class);
+        startActivity(fav_screen);
+    }
+
+
+
 }
