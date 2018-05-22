@@ -6,62 +6,88 @@
     android:layout_height="match_parent"
     tools:context="cr.ac.tec.ec.cines35mm.FavActivity">
 
-    <TableLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TableRow
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView5"
-                android:layout_width="194dp"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/barbarella" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="202dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/thxii83" />
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="200dp"
+                    android:layout_height="400dp"
+                    app:srcCompat="@drawable/thxii83"
+                    tools:layout_editor_absoluteX="200dp" />
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="217dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/alien" />
-        </TableRow>
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="200dp"
+                    android:layout_height="400dp"
+                    app:srcCompat="@drawable/oldboy"
+                    tools:layout_editor_absoluteX="599dp" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="200dp"
+                    android:layout_height="400dp"
+                    app:srcCompat="@drawable/barbarella"
+                    tools:layout_editor_absoluteX="400dp" />
 
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/metropolis" />
+            </TableRow>
 
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/xtro" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="15dp"
-                android:layout_height="match_parent"
-                app:srcCompat="@drawable/oldboy" />
-        </TableRow>
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="200dp"
+                    android:layout_height="400dp"
+                    app:srcCompat="@drawable/metropolis" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="200dp"
+                    android:layout_height="400dp"
+                    app:srcCompat="@drawable/oldboy" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="200dp"
+                    android:layout_height="400dp"
+                    app:srcCompat="@drawable/xtro" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="200dp"
+                    android:layout_height="400dp"
+                    app:srcCompat="@drawable/bladerunner" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="200dp"
+                    android:layout_height="400dp"
+                    app:srcCompat="@drawable/m2001" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="200dp"
+                    android:layout_height="400dp"
+                    app:srcCompat="@drawable/alien" />
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>

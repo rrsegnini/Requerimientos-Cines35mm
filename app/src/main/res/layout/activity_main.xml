@@ -5,132 +5,141 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray"
+    android:minHeight="250dp"
     tools:context="cr.ac.tec.ec.cines35mm.MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="437dp"
-            android:background="#353535"
-            android:backgroundTint="#353535"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/main_imgPrevReco"
-                android:layout_width="284dp"
-                android:layout_height="250dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/annihilation" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            <ImageSwitcher
-                android:id="@+id/main_iswReco"
-                android:layout_width="313dp"
-                android:layout_height="368dp"
-                android:layout_weight="1">
-
-                <ImageView
-                    android:id="@+id/main_imgReco1"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="325dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/m2001" />
-            </ImageSwitcher>
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/main_imgNextReco"
-                android:layout_width="284dp"
-                android:layout_height="250dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/bladerunner" />
+                    <ImageView
+                        android:id="@+id/main_imgPrevRecent"
+                        android:layout_width="284dp"
+                        android:layout_height="250dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/alien" />
 
-        </LinearLayout>
+                    <ImageSwitcher
+                        android:id="@+id/main_iswRecent"
+                        android:layout_width="313dp"
+                        android:layout_height="368dp"
+                        android:layout_weight="1">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="395dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+                        <ImageView
+                            android:id="@+id/main_imgRecent1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/oldboy" />
+                    </ImageSwitcher>
 
-            <ImageView
-                android:id="@+id/main_imgPrevRecent"
-                android:layout_width="284dp"
-                android:layout_height="250dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/alien" />
+                    <ImageView
+                        android:id="@+id/main_imgNextRecent"
+                        android:layout_width="284dp"
+                        android:layout_height="250dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/barbarella" />
 
-            <ImageSwitcher
-                android:id="@+id/main_iswRecent"
-                android:layout_width="313dp"
-                android:layout_height="368dp"
-                android:layout_weight="1">
+                </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/main_imgRecent1"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="325dp"
+                    android:layout_height="match_parent"
+                    android:background="#353535"
+                    android:backgroundTint="#353535"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/main_imgPrevReco"
+                        android:layout_width="284dp"
+                        android:layout_height="250dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/annihilation" />
+
+                    <ImageSwitcher
+                        android:id="@+id/main_iswReco"
+                        android:layout_width="313dp"
+                        android:layout_height="368dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/main_imgReco1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            app:srcCompat="@drawable/m2001" />
+                    </ImageSwitcher>
+
+                    <ImageView
+                        android:id="@+id/main_imgNextReco"
+                        android:layout_width="284dp"
+                        android:layout_height="250dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/bladerunner" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    app:srcCompat="@drawable/oldboy" />
-            </ImageSwitcher>
+                    android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/main_imgNextRecent"
-                android:layout_width="284dp"
-                android:layout_height="250dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/barbarella" />
+                    <Button
+                        android:id="@+id/main_btnHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:elevation="0dp"
+                        android:text="@string/main_Home"
+                        tools:text="@string/main_Home" />
 
-        </LinearLayout>
+                    <Button
+                        android:id="@+id/main_btnFav"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:elevation="0dp"
+                        android:onClick="buttonOnClick"
+                        android:text="@string/main_Fav"
+                        tools:text="@string/main_Fav" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+                    <Button
+                        android:id="@+id/main_btnSearch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:elevation="0dp"
+                        android:text="@string/main_Search"
+                        tools:text="@string/main_Search" />
 
-            <Button
-                android:id="@+id/main_btnHome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:elevation="0dp"
-                android:text="@string/main_Home"
-                tools:text="@string/main_Home" />
-
-            <Button
-                android:id="@+id/main_btnFav"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:elevation="0dp"
-                android:onClick="buttonOnClick"
-                android:text="@string/main_Fav"
-                tools:text="@string/main_Fav" />
-
-            <Button
-                android:id="@+id/main_btnSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:elevation="0dp"
-                android:text="@string/main_Search"
-                tools:text="@string/main_Search" />
-
-            <Button
-                android:id="@+id/main_btnOptions"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:elevation="0dp"
-                android:text="@string/main_Options"
-                tools:text="@string/main_Options" />
-        </LinearLayout>
-
-    </LinearLayout>
+                    <Button
+                        android:id="@+id/main_btnOptions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:elevation="0dp"
+                        android:text="@string/main_Options"
+                        tools:text="@string/main_Options" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
