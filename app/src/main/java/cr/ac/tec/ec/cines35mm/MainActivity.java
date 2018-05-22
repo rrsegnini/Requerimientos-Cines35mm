@@ -22,6 +22,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(fav_screen);
     }
 
+    public void searchButtonOnClick(View v){
+        Button fav = findViewById(R.id.main_btnFav);
+        Intent search_screen = new Intent(this, SearchActivity.class);
+        startActivity(search_screen);
+    }
+
     public void imageOnClick(View v){
         Intent detail_screen = new Intent(this, DetailActivity.class);
         startActivity(detail_screen);

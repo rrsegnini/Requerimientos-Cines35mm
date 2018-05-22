@@ -90,4 +90,48 @@
         </TableLayout>
     </ScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/main_btnHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elevation="0dp"
+            android:text="@string/main_Home"
+            tools:text="@string/main_Home" />
+
+        <Button
+            android:id="@+id/main_btnFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elevation="0dp"
+            android:onClick="buttonOnClick"
+            android:text="@string/main_Fav"
+            tools:text="@string/main_Fav" />
+
+        <Button
+            android:id="@+id/main_btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elevation="0dp"
+            android:text="@string/main_Search"
+            tools:text="@string/main_Search" />
+
+        <Button
+            android:id="@+id/main_btnOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:elevation="0dp"
+            android:text="@string/main_Options"
+            tools:text="@string/main_Options" />
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
