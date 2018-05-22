@@ -22,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(fav_screen);
     }
 
+    public void imageOnClick(View v){
+        Intent detail_screen = new Intent(this, DetailActivity.class);
+        startActivity(detail_screen);
+    }
+
 
 
 }
