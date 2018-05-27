@@ -32,7 +32,7 @@
                         android:layout_width="284dp"
                         android:layout_height="250dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/alien" />
+                        app:srcCompat="@android:color/darker_gray" />
 
                     <ImageSwitcher
                         android:id="@+id/main_iswRecent"
@@ -45,7 +45,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            app:srcCompat="@drawable/oldboy" />
+                            app:srcCompat="@android:color/darker_gray" />
                     </ImageSwitcher>
 
                     <ImageView
@@ -53,7 +53,7 @@
                         android:layout_width="284dp"
                         android:layout_height="250dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/barbarella" />
+                        app:srcCompat="@android:color/darker_gray" />
 
                 </LinearLayout>
 
@@ -70,7 +70,7 @@
                         android:layout_width="284dp"
                         android:layout_height="250dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/annihilation" />
+                        app:srcCompat="@color/colorPrimaryDark" />
 
                     <ImageSwitcher
                         android:id="@+id/main_iswReco"
@@ -84,7 +84,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:onClick="imageOnClick"
-                            app:srcCompat="@drawable/m2001"
+                            app:srcCompat="@color/colorPrimaryDark"
                             tools:clickable="false" />
                     </ImageSwitcher>
 
@@ -93,7 +93,7 @@
                         android:layout_width="284dp"
                         android:layout_height="250dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/bladerunner" />
+                        app:srcCompat="@color/colorPrimaryDark" />
 
                 </LinearLayout>
 

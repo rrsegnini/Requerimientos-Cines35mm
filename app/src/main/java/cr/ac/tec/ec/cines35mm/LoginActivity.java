@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -31,14 +32,28 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
+
+import com.microsoft.windowsazure.mobileservices.*;
+import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
+import com.microsoft.windowsazure.mobileservices.table.TableOperationCallback;
+import com.microsoft.windowsazure.mobileservices.table.TableQueryCallback;
+
+import cr.ac.tec.ec.domain.Género;
+import cr.ac.tec.ec.domain.ListaPelículas;
+import cr.ac.tec.ec.domain.ListaUsuarios;
+import cr.ac.tec.ec.domain.Película;
+import cr.ac.tec.ec.domain.Usuario;
 
 /**
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+
+    private MobileServiceClient mClient;
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -93,6 +108,40 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        try{
+            mClient = new MobileServiceClient(
+                    "https://requerimientos-cines35mm.azurewebsites.net",
+                    this
+            );
+        }catch(Exception e){}
+
+        //DATA FOR TESTING ONLY
+
+        Película p2001 = new Película(1, "2001: A Space Odyssey",
+                Arrays.asList("Stanley Kubrick"),
+                Arrays.asList("Stanley Kubrick","Arthur C. Clarke"),
+                Arrays.asList("Keir Dullea"),
+                Género.SCIENCE_FICTION,
+                1968,
+                "https://posterscines35mm.blob.core.windows.net/posters/m2001.jpg?sp=r&st=2018-05-27T07:18:18Z&se=2018-05-27T15:18:18Z&spr=https&sv=2017-11-09&sig=J6Fq9TLLBIdUKTk%2FdW47l3baPx6P30jJ5TuO8IGsLlc%3D&sr=b",
+                Arrays.asList("classic","cult classic", "cult movie"));
+
+        Película pAlien = new Película(2, "Alien",
+                Arrays.asList("Ridley Scott"),
+                Arrays.asList("Dan O'Bannon"),
+                Arrays.asList("Sigourney Weaver","John Hurt"),
+                Género.SCIENCE_FICTION,
+                1968,
+                "https://posterscines35mm.blob.core.windows.net/posters/alien.jpg?sp=r&st=" +
+                        "2018-05-27T05:17:51Z&se=2018-05-27T13:17:51Z&spr=https&sv=2017-11-09&sig=" +
+                        "NHLC1Lt4ZhHMd0MpTulIGX5JzaFp65Piqwzxm%2Fmow7E%3D&sr=b",
+                Arrays.asList("classic","cult", "cult movie", "xenomorph"));
+
+        ListaUsuarios.addUser(new Usuario(1, "roberto", "roberto"));
+        ListaPelículas.addSysMovie(p2001);
+        ListaPelículas.addSysMovie(pAlien);
+        //---------------------
     }
 
     private void populateAutoComplete() {
@@ -196,8 +245,33 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
-        return email.contains("@");
+
+
+        try {
+
+            //mClient.getTable("Usuario").execute().get();
+            //Usuario item = new Usuario();
+            //item.setNombre("sds");
+            /*mClient.getTable(Usuario.class).insert(item, new TableOperationCallback<item>() {
+                public void onCompleted(Usuario entity, Exception exception, ServiceFilterResponse response) {
+                    if (exception == null) {
+                        // Insert succeeded
+                    } else {
+                        // Insert failed
+                    }
+                }
+            });*/
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return ListaUsuarios.validUser(email);
     }
+
+
+
+
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
