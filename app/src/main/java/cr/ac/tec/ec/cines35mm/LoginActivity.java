@@ -173,7 +173,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 "https://image.ibb.co/irYv8J/annihilation.jpg",
                 Arrays.asList("ex_machina","ex machina", "netflix"));
 
-        ListaUsuarios.addUser(new Usuario(1, "a", "roberto"));
+        Usuario u1 = new Usuario(1, "r", "roberto");
+        Usuario u2 = new Usuario(2, "a101", "roberto");
+        ListaUsuarios.addUser(u1);
+        ListaUsuarios.addUser(u2);
+
+
+
         ListaPelículas.addSysMovie(p2001);
         ListaPelículas.addSysMovie(pAlien);
         ListaPelículas.addSysMovie(pXtro);
@@ -184,6 +190,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         ListaFavoritas.addFavMovie(pAlien);
         ListaFavoritas.addFavMovie(pBarbarella);
         ListaFavoritas.addFavMovie(pTHX);
+
+        pAlien.addComentario(Arrays.asList(u1, "Classic horror/scifi movie."));
+        pAlien.addComentario(Arrays.asList(u2, "Awesome movie."));
+        p2001.addComentario(Arrays.asList(u2, "A masterpiece."));
+
 
 
 

@@ -12,13 +12,18 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.google.common.collect.Table;
 
 import java.io.InputStream;
 import java.util.List;
 
 import cr.ac.tec.ec.domain.ListaPelículas;
 import cr.ac.tec.ec.domain.Película;
+import cr.ac.tec.ec.domain.Usuario;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -30,6 +35,7 @@ public class DetailActivity extends AppCompatActivity {
 
 
         setDetails();
+
         /*fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,10 +48,6 @@ public class DetailActivity extends AppCompatActivity {
     protected void setDetails(){
         Intent intent = getIntent();
         int MovieId = (Integer.parseInt(intent.getStringExtra("MovieId")));
-        System.out.println("MOVIE ID: " + MovieId);
-
-
-
 
 
         Película p = ListaPelículas.getMovieById(MovieId);
@@ -81,6 +83,9 @@ public class DetailActivity extends AppCompatActivity {
         }
         return result;
     }
+
+
+
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 

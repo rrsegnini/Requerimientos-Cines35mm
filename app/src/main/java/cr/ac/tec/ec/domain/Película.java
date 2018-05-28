@@ -1,5 +1,6 @@
 package cr.ac.tec.ec.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,9 +17,10 @@ public class Película {
     private int Año;
     private String PosterURL;
     private List<String> Tags;
+    private List<List<Object>> Comentarios = new ArrayList<>();
 
     //For testing only
-    private int Calificación;
+    private float Calificación = 0;
     private String Comentario;
     //----------------
 
@@ -73,19 +75,19 @@ public class Película {
         return Tags;
     }
 
-    public int getCalificación() {
+    public float getCalificación() {
         return Calificación;
     }
 
-    public void setCalificación(int calificación) {
+    public void setCalificación(float calificación) {
         Calificación = calificación;
     }
 
-    public String getComentario() {
-        return Comentario;
+    public List<List<Object>> getComentarios() {
+        return Comentarios;
     }
 
-    public void setComentario(String comentario) {
-        Comentario = comentario;
+    public void addComentario(List<Object> _comentario) {
+        Comentarios.add(_comentario);
     }
 }

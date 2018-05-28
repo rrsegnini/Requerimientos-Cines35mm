@@ -13,6 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.io.InputStream;
@@ -21,6 +24,7 @@ import java.util.List;
 import cr.ac.tec.ec.domain.ListaFavoritas;
 import cr.ac.tec.ec.domain.ListaPelículas;
 import cr.ac.tec.ec.domain.Película;
+import cr.ac.tec.ec.domain.Usuario;
 
 public class MDetailActivity extends AppCompatActivity {
     private int _MovieId;
@@ -31,6 +35,8 @@ public class MDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mdetail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +54,24 @@ public class MDetailActivity extends AppCompatActivity {
         });
 
         setDetails();
+        RatingBar rating = findViewById(R.id.detail_barRating);
+        Película p = ListaPelículas.getMovieById(_MovieId);
+        rating.setRating(p.getCalificación());
+
+        rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                System.out.println(ratingBar.getRating());
+                Película p = ListaPelículas.getMovieById(_MovieId);
+                p.setCalificación(ratingBar.getRating());
+
+            }
+        });
+
+
+
+
+
     }
 
 
@@ -56,10 +80,8 @@ public class MDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int MovieId = (Integer.parseInt(intent.getStringExtra("MovieId")));
         _MovieId = MovieId;
-        System.out.println("MOVIE ID: " + MovieId);
 
-
-
+        setReviews(MovieId);
 
 
         Película p = ListaPelículas.getMovieById(MovieId);
@@ -79,6 +101,57 @@ public class MDetailActivity extends AppCompatActivity {
 
         new MDetailActivity.DownloadImageTask((ImageView) poster)
                 .execute(p.getPosterURL());
+
+
+    }
+
+    private void setReviews(int MovieId){
+
+        Película p = ListaPelículas.getMovieById(MovieId);
+        TableLayout table_reviews = findViewById(R.id.detail_tblReviews);
+        List<List<Object>> list_reviews = p.getComentarios();
+
+
+        int i = 0;
+        for (List<Object> m: list_reviews){
+            TextView username = new TextView(this);
+            username.setTextSize(20);
+            username.setGravity(View.TEXT_ALIGNMENT_CENTER);//.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            TextView rev = new TextView(this);
+            rev.setGravity(View.TEXT_ALIGNMENT_CENTER);
+            rev.setTextSize(30);
+
+
+            Usuario u = (Usuario)m.get(0);
+            String s = (String)m.get(1);
+            TableRow newRow = new TableRow(this);
+            newRow.setId(i + 1);
+            i++;
+
+
+            TableLayout.LayoutParams trParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.WRAP_CONTENT);
+            //trParams.setMargins(leftRowMargin, topRowMargin, rightRowMargin, bottomRowMargin);
+            newRow.setPadding(20,20,20,20);
+            newRow.setLayoutParams(trParams);
+
+
+            username.setText(u.getUsername());
+            rev.setText(s);
+
+            if(newRow.getParent()!=null) {
+                ((TableLayout) newRow.getParent()).removeView(newRow);
+            }
+            //newRow.getParent().removeView(newRow);
+
+
+            newRow.addView(username);
+            newRow.addView(rev);
+            table_reviews.addView(newRow);
+            /*
+            table_reviews.addView(username);
+            table_reviews.addView(rev);*/
+        }
 
 
     }
@@ -120,5 +193,6 @@ public class MDetailActivity extends AppCompatActivity {
             bmImage.setImageBitmap(result);
         }
     }
+
 
 }
