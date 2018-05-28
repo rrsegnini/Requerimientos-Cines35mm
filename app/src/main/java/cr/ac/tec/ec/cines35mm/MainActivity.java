@@ -58,10 +58,11 @@ public class MainActivity extends AppCompatActivity {
 
         new DownloadImageTask((ImageView) findViewById(R.id.main_imgReco1))
                 .execute(sys_movies.get(0).getPosterURL());
+        findViewById(R.id.main_imgReco1).setTag(sys_movies.get(0).getIdPelícula());
 
         new DownloadImageTask((ImageView) findViewById(R.id.main_imgRecent1))
                 .execute(sys_movies.get(1).getPosterURL());
-
+        findViewById(R.id.main_imgRecent1).setTag(sys_movies.get(1).getIdPelícula());
 
     }
 
@@ -87,7 +88,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void imageOnClick(View v){
-        Intent detail_screen = new Intent(this, DetailActivity.class);
+        Intent detail_screen = new Intent(this, MDetailActivity.class);
+        System.out.println(String.valueOf(v.getId()));
+        //System.out.println(R.id.main_imgReco1);
+        int MovieId = (int)findViewById(v.getId()).getTag();
+        System.out.println("TAG " + MovieId);
+        detail_screen.putExtra("MovieId", String.valueOf(MovieId));
         startActivity(detail_screen);
     }
 

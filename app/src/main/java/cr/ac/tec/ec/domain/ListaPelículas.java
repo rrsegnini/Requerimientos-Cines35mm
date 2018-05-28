@@ -17,4 +17,13 @@ public class ListaPelículas {
     public static void addSysMovie(Película p){
         SysPelículas.add(p);
     }
+
+    public static Película getMovieById(int id){
+        for (int i = 0; i<SysPelículas.size();i++){
+            if (SysPelículas.get(i).getIdPelícula() == id){
+                return SysPelículas.get(i);
+            }
+        }
+        return null;
+    }
 }

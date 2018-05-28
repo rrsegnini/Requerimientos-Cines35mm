@@ -3,6 +3,7 @@ package cr.ac.tec.ec.cines35mm;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Movie;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -17,31 +18,44 @@ import android.widget.TextView;
 import java.io.InputStream;
 import java.util.List;
 
+import cr.ac.tec.ec.domain.ListaFavoritas;
 import cr.ac.tec.ec.domain.ListaPelículas;
 import cr.ac.tec.ec.domain.Película;
 
-public class DetailActivity extends AppCompatActivity {
+public class MDetailActivity extends AppCompatActivity {
+    private int _MovieId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_detail);
+        setContentView(R.layout.activity_mdetail);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-
-
-        setDetails();
-        /*fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Snackbar.make(view, "Add to favourite movies?", Snackbar.LENGTH_LONG)
+                        .setAction("ADD", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Película p = ListaPelículas.getMovieById(_MovieId);
+                                ListaFavoritas.addFavMovie(p);
+                            }
+                        }).show();
             }
-        });*/
+        });
+
+        setDetails();
     }
+
+
 
     protected void setDetails(){
         Intent intent = getIntent();
         int MovieId = (Integer.parseInt(intent.getStringExtra("MovieId")));
+        _MovieId = MovieId;
         System.out.println("MOVIE ID: " + MovieId);
 
 
@@ -49,7 +63,6 @@ public class DetailActivity extends AppCompatActivity {
 
 
         Película p = ListaPelículas.getMovieById(MovieId);
-        //Película p = ListaPelículas.getSysPelículas().get(0);
         TextView title = findViewById(R.id.detail_txtTitle);
         TextView directors = findViewById(R.id.detail_txtDirector);
         TextView screenplay = findViewById(R.id.detail_txtScreenplay);
@@ -64,7 +77,7 @@ public class DetailActivity extends AppCompatActivity {
         year.setText("Year: " + String.valueOf(p.getAño()));
         actors.setText("Actors: " + toString(p.getActores()));
 
-        new DownloadImageTask((ImageView) poster)
+        new MDetailActivity.DownloadImageTask((ImageView) poster)
                 .execute(p.getPosterURL());
 
 
@@ -81,6 +94,7 @@ public class DetailActivity extends AppCompatActivity {
         }
         return result;
     }
+
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 

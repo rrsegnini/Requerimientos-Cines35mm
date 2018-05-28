@@ -43,6 +43,7 @@ import com.microsoft.windowsazure.mobileservices.table.TableOperationCallback;
 import com.microsoft.windowsazure.mobileservices.table.TableQueryCallback;
 
 import cr.ac.tec.ec.domain.Género;
+import cr.ac.tec.ec.domain.ListaFavoritas;
 import cr.ac.tec.ec.domain.ListaPelículas;
 import cr.ac.tec.ec.domain.ListaUsuarios;
 import cr.ac.tec.ec.domain.Película;
@@ -124,7 +125,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 Arrays.asList("Keir Dullea"),
                 Género.SCIENCE_FICTION,
                 1968,
-                "https://posterscines35mm.blob.core.windows.net/posters/m2001.jpg?sp=r&st=2018-05-27T07:18:18Z&se=2018-05-27T15:18:18Z&spr=https&sv=2017-11-09&sig=J6Fq9TLLBIdUKTk%2FdW47l3baPx6P30jJ5TuO8IGsLlc%3D&sr=b",
+                "https://image.ibb.co/cSc58J/m2001.jpg",
                 Arrays.asList("classic","cult classic", "cult movie"));
 
         Película pAlien = new Película(2, "Alien",
@@ -132,15 +133,73 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 Arrays.asList("Dan O'Bannon"),
                 Arrays.asList("Sigourney Weaver","John Hurt"),
                 Género.SCIENCE_FICTION,
-                1968,
-                "https://posterscines35mm.blob.core.windows.net/posters/alien.jpg?sp=r&st=" +
-                        "2018-05-27T05:17:51Z&se=2018-05-27T13:17:51Z&spr=https&sv=2017-11-09&sig=" +
-                        "NHLC1Lt4ZhHMd0MpTulIGX5JzaFp65Piqwzxm%2Fmow7E%3D&sr=b",
+                1979,
+                "https://image.ibb.co/gX4P2d/alien.jpg",
                 Arrays.asList("classic","cult", "cult movie", "xenomorph"));
 
-        ListaUsuarios.addUser(new Usuario(1, "roberto", "roberto"));
+        Película pXtro = new Película(3, "Xtro",
+                Arrays.asList("Harry Bromley Davenport"),
+                Arrays.asList("Harry Bromley Davenport", "Iain Cassie", "Robert Smith"),
+                Arrays.asList("Maryam d'Abo","Philip Sayer"),
+                Género.HORROR,
+                1982,
+                "https://image.ibb.co/kzY1hd/xtro.jpg",
+                Arrays.asList("bad movie","funny","cult", "cult movie", "redlettermedia"));
+
+        Película pBarbarella = new Película(4, "Barbarella",
+                Arrays.asList("Roger Vadim"),
+                Arrays.asList("Terry Southern"),
+                Arrays.asList("Jane Fonda","John Phillip Law"),
+                Género.SCIENCE_FICTION,
+                1968,
+                "https://image.ibb.co/bUqxNd/barbarella.jpg",
+                Arrays.asList("italian cult", "cult movie"));
+
+        Película pTHX = new Película(5, "THX 1138",
+                Arrays.asList("George Lucas"),
+                Arrays.asList("George Lucas", "Walter Murch", "Matthew Robbins"),
+                Arrays.asList("Robert Duvall","Maggie McOmie"),
+                Género.SCIENCE_FICTION,
+                1971,
+                "https://image.ibb.co/kzY1hd/xtro.jpg",
+                Arrays.asList("old movie", "cult movie", "star wars"));
+
+        Película pAnnihilation = new Película(6, "Annihilation",
+                Arrays.asList("Alex Garland"),
+                Arrays.asList("Alex Garland"),
+                Arrays.asList("Natalie Portman","Gina Rodriguez","Oscar Isaac"),
+                Género.SCIENCE_FICTION,
+                2018,
+                "https://image.ibb.co/irYv8J/annihilation.jpg",
+                Arrays.asList("ex_machina","ex machina", "netflix"));
+
+        ListaUsuarios.addUser(new Usuario(1, "a", "roberto"));
         ListaPelículas.addSysMovie(p2001);
         ListaPelículas.addSysMovie(pAlien);
+        ListaPelículas.addSysMovie(pXtro);
+        ListaPelículas.addSysMovie(pBarbarella);
+        ListaPelículas.addSysMovie(pTHX);
+        ListaPelículas.addSysMovie(pAnnihilation);
+
+        ListaFavoritas.addFavMovie(pAlien);
+        ListaFavoritas.addFavMovie(pBarbarella);
+        ListaFavoritas.addFavMovie(pTHX);
+
+
+
+        /*
+        https://image.ibb.co/iZpVay/bladerunner.jpg
+        https://image.ibb.co/j6EwFy/logo.png
+        https://image.ibb.co/cSc58J/m2001.jpg
+        https://image.ibb.co/j1uVay/metropolis.jpg
+        https://image.ibb.co/karXoJ/oldboy.jpg
+        https://image.ibb.co/b6NGFy/thxii83.jpg
+        https://image.ibb.co/kzY1hd/xtro.jpg
+        https://image.ibb.co/gX4P2d/alien.jpg
+        https://image.ibb.co/irYv8J/annihilation.jpg
+        https://image.ibb.co/bUqxNd/barbarella.jpg
+         */
+
         //---------------------
     }
 
