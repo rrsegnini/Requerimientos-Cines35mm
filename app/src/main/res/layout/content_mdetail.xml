@@ -24,7 +24,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="430dp"
                     android:background="@color/colorPrimaryDark"
                     android:orientation="horizontal">
 
@@ -106,6 +106,7 @@
                     android:layout_height="wrap_content"
                     android:hapticFeedbackEnabled="false"
                     android:text="@string/reviewsTitle"
+                    android:textAlignment="center"
                     android:textSize="36sp"
                     tools:text="@string/reviewsTitle" />
 

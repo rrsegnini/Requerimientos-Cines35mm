@@ -17,4 +17,21 @@ public class ListaFavoritas {
     public static List<Película> getFavMovies(){
         return FavPelículas;
     }
+
+    public static boolean movieExists(int id){
+        for (int i = 0; i<FavPelículas.size();i++){
+            if (FavPelículas.get(i).getIdPelícula() == id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void deleteMovie(int id){
+        for (int i = 0; i<FavPelículas.size();i++){
+            if (FavPelículas.get(i).getIdPelícula() == id){
+                FavPelículas.remove(i);
+            }
+        }
+    }
 }

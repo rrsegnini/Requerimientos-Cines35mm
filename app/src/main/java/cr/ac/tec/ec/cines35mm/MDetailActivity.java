@@ -1,5 +1,7 @@
 package cr.ac.tec.ec.cines35mm;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,13 +12,16 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.InputStream;
 import java.util.List;
@@ -28,6 +33,7 @@ import cr.ac.tec.ec.domain.Usuario;
 
 public class MDetailActivity extends AppCompatActivity {
     private int _MovieId;
+    private String m_Text = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +48,73 @@ public class MDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (!ListaFavoritas.movieExists(_MovieId)) {
                 Snackbar.make(view, "Add to favourite movies?", Snackbar.LENGTH_LONG)
                         .setAction("ADD", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                Película p = ListaPelículas.getMovieById(_MovieId);
-                                ListaFavoritas.addFavMovie(p);
+                                    try{
+                                        Película p = ListaPelículas.getMovieById(_MovieId);
+                                        ListaFavoritas.addFavMovie(p);
+                                        Toast.makeText(MDetailActivity.this, "Movie added!",
+                                                Toast.LENGTH_LONG).show();
+                                    }catch(Exception e){
+                                        Toast.makeText(MDetailActivity.this, e.getMessage(),
+                                                Toast.LENGTH_LONG).show();
+                                    }
+
                             }
                         }).show();
+
+                }else{
+                    Snackbar.make(view, "Remove movie from Favourites?", Snackbar.LENGTH_LONG)
+                            .setAction("DELETE", new View.OnClickListener(){
+                                @Override
+                                public void onClick(View view) {
+                                    try {
+                                        ListaFavoritas.deleteMovie(_MovieId);
+                                        Toast.makeText(MDetailActivity.this, "Removed" +
+                                                        " from Favourites!",
+                                                Toast.LENGTH_LONG).show();
+                                    }catch(Exception e){
+                                        Toast.makeText(MDetailActivity.this, e.getMessage(),
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            }).show();
+                }
+            }
+        });
+
+        FloatingActionButton add_fab = findViewById(R.id.add_fab);
+        add_fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MDetailActivity.this);
+                builder.setTitle("Add review");
+
+
+                final EditText input = new EditText(MDetailActivity.this);
+
+                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_TEXT);
+                builder.setView(input);
+
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        m_Text = input.getText().toString();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
             }
         });
 

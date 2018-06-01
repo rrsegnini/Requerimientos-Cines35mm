@@ -117,4 +117,5 @@
     <string name="Actors">Actors:</string>
     <string name="Search">Search...</string>
     <string name="title_activity_mdetail">MDetailActivity</string>
+    <string name="search">Search movie...</string>
 </resources>

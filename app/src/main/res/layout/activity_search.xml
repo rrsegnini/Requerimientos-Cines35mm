@@ -11,17 +11,25 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <AutoCompleteTextView
-            android:id="@+id/search_txtSearch"
+        <SearchView
+            android:id="@+id/search_svwSearch"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/Search"
-            android:textSize="30sp" />
+            android:layout_height="wrap_content">
 
-        <ListView
+        </SearchView>
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none" />
+            android:layout_height="match_parent">
+
+            <TableLayout
+                android:id="@+id/search_tblMatches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </TableLayout>
+
+        </ScrollView>
 
     </LinearLayout>
 
