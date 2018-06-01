@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
 
 import cr.ac.tec.ec.domain.ListaFavoritas;
@@ -42,18 +43,29 @@ public class MDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        setListeners();
 
 
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        setReviews(_MovieId);
+    }
+
+
+    protected void setListeners(){
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 if (!ListaFavoritas.movieExists(_MovieId)) {
-                Snackbar.make(view, "Add to favourite movies?", Snackbar.LENGTH_LONG)
-                        .setAction("ADD", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
+                    Snackbar.make(view, "Add to favourite movies?", Snackbar.LENGTH_LONG)
+                            .setAction("ADD", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
                                     try{
                                         Película p = ListaPelículas.getMovieById(_MovieId);
                                         ListaFavoritas.addFavMovie(p);
@@ -64,8 +76,8 @@ public class MDetailActivity extends AppCompatActivity {
                                                 Toast.LENGTH_LONG).show();
                                     }
 
-                            }
-                        }).show();
+                                }
+                            }).show();
 
                 }else{
                     Snackbar.make(view, "Remove movie from Favourites?", Snackbar.LENGTH_LONG)
@@ -104,7 +116,12 @@ public class MDetailActivity extends AppCompatActivity {
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        m_Text = input.getText().toString();
+                        Usuario.getInstance();
+
+                        ListaPelículas.getMovieById(_MovieId)
+                                .addComentario(Arrays.asList(Usuario.getInstance(),input.getText().toString()));
+                        setReviews(_MovieId);
+                        //m_Text = input.getText().toString();
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -132,11 +149,6 @@ public class MDetailActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
     }
 
 
@@ -174,6 +186,7 @@ public class MDetailActivity extends AppCompatActivity {
 
         Película p = ListaPelículas.getMovieById(MovieId);
         TableLayout table_reviews = findViewById(R.id.detail_tblReviews);
+        table_reviews.removeAllViews();
         List<List<Object>> list_reviews = p.getComentarios();
 
 

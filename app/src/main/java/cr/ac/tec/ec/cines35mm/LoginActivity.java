@@ -178,6 +178,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         ListaUsuarios.addUser(u1);
         ListaUsuarios.addUser(u2);
 
+        Usuario.getInstance().logUser(u1);
+
 
 
         ListaPelículas.addSysMovie(p2001);

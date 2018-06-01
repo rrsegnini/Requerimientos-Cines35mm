@@ -11,7 +11,7 @@ public class Usuario {
     private String nombre;
     private String apellidos;
     private boolean admin;
-    private Usuario currentUser;
+    private static Usuario currentUser;
 
 
     public Usuario() {
@@ -23,6 +23,19 @@ public class Usuario {
         this.password = password;
         this.admin = false;
     }
+
+    public static Usuario getInstance() {
+        if (currentUser == null)
+            currentUser = new Usuario();
+
+        return currentUser;
+    }
+
+    public void logUser(Usuario u){
+        currentUser = u;
+    }
+
+
 
     public int getIdUsuario() {
         return IdUsuario;
