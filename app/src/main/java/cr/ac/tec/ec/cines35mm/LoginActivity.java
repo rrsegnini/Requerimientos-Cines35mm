@@ -161,7 +161,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 Arrays.asList("Robert Duvall","Maggie McOmie"),
                 Género.SCIENCE_FICTION,
                 1971,
-                "https://image.ibb.co/kzY1hd/xtro.jpg",
+                "https://image.ibb.co/b6NGFy/thxii83.jpg",
                 Arrays.asList("old movie", "cult movie", "star wars"));
 
         Película pAnnihilation = new Película(6, "Annihilation",

@@ -19,7 +19,7 @@
         <activity android:name=".FavActivity" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login">
+            android:label="Cines35mm">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

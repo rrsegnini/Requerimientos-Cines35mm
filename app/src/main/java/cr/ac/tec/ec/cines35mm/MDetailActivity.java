@@ -42,7 +42,7 @@ public class MDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mdetail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        ListaFavoritas.refreshMovies();
         setListeners();
 
 
@@ -51,6 +51,7 @@ public class MDetailActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
+        ListaFavoritas.refreshMovies();
         setReviews(_MovieId);
     }
 

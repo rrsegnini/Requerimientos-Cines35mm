@@ -27,6 +27,15 @@ public class ListaFavoritas {
         return false;
     }
 
+    public static void refreshMovies(){
+        List<Película> sys_movies = ListaPelículas.getSysPelículas();
+
+        for (Película m: FavPelículas){
+            m = ListaPelículas.getMovieById(m.getIdPelícula());
+
+        }
+    }
+
     public static void deleteMovie(int id){
         for (int i = 0; i<FavPelículas.size();i++){
             if (FavPelículas.get(i).getIdPelícula() == id){
