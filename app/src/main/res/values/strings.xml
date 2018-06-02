@@ -118,4 +118,8 @@
     <string name="Search">Search...</string>
     <string name="title_activity_mdetail">MDetailActivity</string>
     <string name="search">Search movie...</string>
+    <string name="title_activity_admin_movie">AdminMovieActivity</string>
+    <string name="adminDirector">Director (separate with \";\")</string>
+    <string name="adminScreenplay">Screenplay by: (separate with \";\")</string>
+    <string name="adminActors">Actors: (separate with \";\")</string>
 </resources>

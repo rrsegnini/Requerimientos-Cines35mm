@@ -42,6 +42,7 @@ import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 import com.microsoft.windowsazure.mobileservices.table.TableOperationCallback;
 import com.microsoft.windowsazure.mobileservices.table.TableQueryCallback;
 
+import cr.ac.tec.ec.admin.AdminMovieActivity;
 import cr.ac.tec.ec.domain.Género;
 import cr.ac.tec.ec.domain.ListaFavoritas;
 import cr.ac.tec.ec.domain.ListaPelículas;
@@ -311,6 +312,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask.execute((Void) null);
 
             Intent mainScreen = new Intent(this, MainActivity.class);
+            //Intent mainScreen = new Intent(this, AdminMovieActivity.class);
             startActivity(mainScreen);
         }
     }
