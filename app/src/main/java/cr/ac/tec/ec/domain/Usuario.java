@@ -24,6 +24,13 @@ public class Usuario {
         this.admin = false;
     }
 
+    public Usuario(int idUsuario, String username, String password, boolean admin) {
+        IdUsuario = idUsuario;
+        this.username = username;
+        this.password = password;
+        this.admin = admin;
+    }
+
     public static Usuario getInstance() {
         if (currentUser == null)
             currentUser = new Usuario();
@@ -33,6 +40,10 @@ public class Usuario {
 
     public void logUser(Usuario u){
         currentUser = u;
+    }
+
+    public boolean isAdmin(){
+        return this.admin;
     }
 
 

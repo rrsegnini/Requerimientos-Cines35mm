@@ -23,4 +23,14 @@ public class ListaUsuarios {
         return false;
     }
 
+    public static Usuario getUser(String username){
+        for (Usuario u: ListaUsuarios){
+            System.out.println(u.getUsername());
+            if (u.getUsername().equals(username)){
+                return u;
+            }
+        }
+        return null;
+    }
+
 }

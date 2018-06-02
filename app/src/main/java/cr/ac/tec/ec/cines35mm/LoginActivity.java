@@ -5,7 +5,6 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -38,11 +37,8 @@ import java.util.List;
 import static android.Manifest.permission.READ_CONTACTS;
 
 import com.microsoft.windowsazure.mobileservices.*;
-import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
-import com.microsoft.windowsazure.mobileservices.table.TableOperationCallback;
-import com.microsoft.windowsazure.mobileservices.table.TableQueryCallback;
 
-import cr.ac.tec.ec.admin.AdminMovieActivity;
+import cr.ac.tec.ec.admin.AdminMainActivity;
 import cr.ac.tec.ec.domain.Género;
 import cr.ac.tec.ec.domain.ListaFavoritas;
 import cr.ac.tec.ec.domain.ListaPelículas;
@@ -175,11 +171,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 Arrays.asList("ex_machina","ex machina", "netflix"));
 
         Usuario u1 = new Usuario(1, "r", "roberto");
-        Usuario u2 = new Usuario(2, "a101", "roberto");
+        Usuario u2 = new Usuario(2, "admin", "admin", true);
         ListaUsuarios.addUser(u1);
         ListaUsuarios.addUser(u2);
 
-        Usuario.getInstance().logUser(u1);
+
 
 
 
@@ -311,9 +307,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
 
-            Intent mainScreen = new Intent(this, MainActivity.class);
-            //Intent mainScreen = new Intent(this, AdminMovieActivity.class);
-            startActivity(mainScreen);
+            Usuario.getInstance().logUser(ListaUsuarios.getUser(email));
+            if (ListaUsuarios.getUser(email).isAdmin()){
+                Intent mainScreen = new Intent(this, AdminMainActivity.class);
+                startActivity(mainScreen);
+            }else{
+                Intent mainScreen = new Intent(this, MainActivity.class);
+                startActivity(mainScreen);
+            }
         }
     }
 

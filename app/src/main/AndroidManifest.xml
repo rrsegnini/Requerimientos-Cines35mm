@@ -35,7 +35,8 @@
         <activity
             android:name="cr.ac.tec.ec.admin.AdminMovieActivity"
             android:label="@string/title_activity_admin_movie"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="cr.ac.tec.ec.admin.AdminMainActivity"></activity>
     </application>
 
 </manifest>
