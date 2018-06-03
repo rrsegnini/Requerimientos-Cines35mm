@@ -29,6 +29,7 @@ import java.util.List;
 
 import cr.ac.tec.ec.domain.ListaFavoritas;
 import cr.ac.tec.ec.domain.ListaPelículas;
+import cr.ac.tec.ec.domain.ListaUsuarios;
 import cr.ac.tec.ec.domain.Película;
 import cr.ac.tec.ec.domain.Usuario;
 
@@ -104,35 +105,41 @@ public class MDetailActivity extends AppCompatActivity {
         add_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(MDetailActivity.this);
-                builder.setTitle("Add review");
+                if (!ListaUsuarios.isBlocked(Usuario.getInstance())) {
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MDetailActivity.this);
+                    builder.setTitle("Add review");
 
 
-                final EditText input = new EditText(MDetailActivity.this);
+                    final EditText input = new EditText(MDetailActivity.this);
 
-                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_TEXT);
-                builder.setView(input);
+                    input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_TEXT);
+                    builder.setView(input);
 
 
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Usuario.getInstance();
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Usuario.getInstance();
 
-                        ListaPelículas.getMovieById(_MovieId)
-                                .addComentario(Arrays.asList(Usuario.getInstance(),input.getText().toString()));
-                        setReviews(_MovieId);
-                        //m_Text = input.getText().toString();
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
+                            ListaPelículas.getMovieById(_MovieId)
+                                    .addComentario(Arrays.asList(Usuario.getInstance(), input.getText().toString()));
+                            setReviews(_MovieId);
+                            //m_Text = input.getText().toString();
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
 
-                builder.show();
+                    builder.show();
+                }else{
+                    Toast.makeText(MDetailActivity.this, "You've been blocked by an admin. Reviews are disabled.",
+                            Toast.LENGTH_LONG).show();
+                }
             }
         });
 

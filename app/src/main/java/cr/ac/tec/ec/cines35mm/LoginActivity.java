@@ -39,6 +39,7 @@ import static android.Manifest.permission.READ_CONTACTS;
 import com.microsoft.windowsazure.mobileservices.*;
 
 import cr.ac.tec.ec.admin.AdminMainActivity;
+import cr.ac.tec.ec.data.Database;
 import cr.ac.tec.ec.domain.Género;
 import cr.ac.tec.ec.domain.ListaFavoritas;
 import cr.ac.tec.ec.domain.ListaPelículas;
@@ -51,7 +52,7 @@ import cr.ac.tec.ec.domain.Usuario;
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
-    private MobileServiceClient mClient;
+
 
     /**
      * Id to identity READ_CONTACTS permission request.
@@ -80,6 +81,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Database.connect(this);
+
+
+
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -107,12 +114,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
-        try{
-            mClient = new MobileServiceClient(
-                    "https://requerimientos-cines35mm.azurewebsites.net",
-                    this
-            );
-        }catch(Exception e){}
+
 
         //DATA FOR TESTING ONLY
 
@@ -174,6 +176,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         Usuario u2 = new Usuario(2, "admin", "admin", true);
         ListaUsuarios.addUser(u1);
         ListaUsuarios.addUser(u2);
+
+        ListaUsuarios.blockUser(u1.getUsername());
 
 
 
@@ -319,28 +323,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
-
-
-        try {
-
-            //mClient.getTable("Usuario").execute().get();
-            //Usuario item = new Usuario();
-            //item.setNombre("sds");
-            /*mClient.getTable(Usuario.class).insert(item, new TableOperationCallback<item>() {
-                public void onCompleted(Usuario entity, Exception exception, ServiceFilterResponse response) {
-                    if (exception == null) {
-                        // Insert succeeded
-                    } else {
-                        // Insert failed
-                    }
-                }
-            });*/
-
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-
+        //Replace////////////////////
         return ListaUsuarios.validUser(email);
     }
 

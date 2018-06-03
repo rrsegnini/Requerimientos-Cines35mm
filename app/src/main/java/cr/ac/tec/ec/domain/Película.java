@@ -24,6 +24,9 @@ public class Película {
     private String Comentario;
     //----------------
 
+    public Película(){
+
+    }
     public Película(int idPelícula, String nombre, List<String> directores, List<String> guionistas,
                     List<String> actores, Género género, int año, String posterURL, List<String> tags) {
         IdPelícula = idPelícula;
@@ -104,6 +107,10 @@ public class Película {
         return PosterURL;
     }
 
+    public void setPosterURL(String posterURL) {
+        PosterURL = posterURL;
+    }
+
     public List<String> getTags() {
         return Tags;
     }
@@ -123,4 +130,6 @@ public class Película {
     public void addComentario(List<Object> _comentario) {
         Comentarios.add(_comentario);
     }
+
+
 }
