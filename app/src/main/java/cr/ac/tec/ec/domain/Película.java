@@ -1,5 +1,6 @@
 package cr.ac.tec.ec.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by CASA on 5/26/2018.
  */
 
-public class Película {
+public class Película implements Serializable{
     private int IdPelícula;
     private String Nombre;
     private List<String> Directores;

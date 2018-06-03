@@ -65,6 +65,19 @@ public class ListaUsuarios {
         return false;
     }
 
+    public static List<Usuario> getListaUsuarios() {
+        return ListaUsuarios;
+    }
 
+    public static List<Usuario> getListaUsuariosBloqueados() {
+        return ListaUsuariosBloqueados;
+    }
 
+    public static void setListaUsuarios(List<Usuario> listaUsuarios) {
+        ListaUsuarios = listaUsuarios;
+    }
+
+    public static void setListaUsuariosBloqueados(List<Usuario> listaUsuariosBloqueados) {
+        ListaUsuariosBloqueados = listaUsuariosBloqueados;
+    }
 }

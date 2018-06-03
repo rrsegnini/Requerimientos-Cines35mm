@@ -79,23 +79,25 @@ public class MainActivity extends AppCompatActivity {
 
 
         ////////RECENTLY ADDED
-        Película rp1 = fav_movies.get(0);
-        Película rp2 = fav_movies.get(1);
-        Película rp3 = fav_movies.get(2);
-        if (p1!=null) {
-            new DownloadImageTask((ImageView) findViewById(R.id.main_imgRecent1))
-                    .execute(rp1.getPosterURL());
-            findViewById(R.id.main_imgRecent1).setTag(rp1.getIdPelícula());
-        }
-        if (p2!=null) {
-            new DownloadImageTask((ImageView) findViewById(R.id.main_imgPrevRecent))
-                    .execute(rp2.getPosterURL());
-            findViewById(R.id.main_imgPrevRecent).setTag(rp2.getIdPelícula());
-        }
-        if (p3!=null) {
-            new DownloadImageTask((ImageView) findViewById(R.id.main_imgNextRecent))
-                    .execute(rp3.getPosterURL());
-            findViewById(R.id.main_imgNextRecent).setTag(rp3.getIdPelícula());
+        if (fav_movies.size()>=3){
+            Película rp1 = fav_movies.get(0);
+            Película rp2 = fav_movies.get(1);
+            Película rp3 = fav_movies.get(2);
+            if (p1!=null) {
+                new DownloadImageTask((ImageView) findViewById(R.id.main_imgRecent1))
+                        .execute(rp1.getPosterURL());
+                findViewById(R.id.main_imgRecent1).setTag(rp1.getIdPelícula());
+            }
+            if (p2!=null) {
+                new DownloadImageTask((ImageView) findViewById(R.id.main_imgPrevRecent))
+                        .execute(rp2.getPosterURL());
+                findViewById(R.id.main_imgPrevRecent).setTag(rp2.getIdPelícula());
+            }
+            if (p3!=null) {
+                new DownloadImageTask((ImageView) findViewById(R.id.main_imgNextRecent))
+                        .execute(rp3.getPosterURL());
+                findViewById(R.id.main_imgNextRecent).setTag(rp3.getIdPelícula());
+            }
         }
 
 

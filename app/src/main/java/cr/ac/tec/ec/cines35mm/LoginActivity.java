@@ -30,6 +30,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -116,105 +119,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-        //DATA FOR TESTING ONLY
+        cr.ac.tec.ec.data.Database.initialize(this);
+        //cr.ac.tec.ec.data.Database.loadData(this);
 
-        Película p2001 = new Película(1, "2001: A Space Odyssey",
-                Arrays.asList("Stanley Kubrick"),
-                Arrays.asList("Stanley Kubrick","Arthur C. Clarke"),
-                Arrays.asList("Keir Dullea"),
-                Género.SCIENCE_FICTION,
-                1968,
-                "https://image.ibb.co/cSc58J/m2001.jpg",
-                Arrays.asList("classic","cult classic", "cult movie"));
-
-        Película pAlien = new Película(2, "Alien",
-                Arrays.asList("Ridley Scott"),
-                Arrays.asList("Dan O'Bannon"),
-                Arrays.asList("Sigourney Weaver","John Hurt"),
-                Género.SCIENCE_FICTION,
-                1979,
-                "https://image.ibb.co/gX4P2d/alien.jpg",
-                Arrays.asList("classic","cult", "cult movie", "xenomorph"));
-
-        Película pXtro = new Película(3, "Xtro",
-                Arrays.asList("Harry Bromley Davenport"),
-                Arrays.asList("Harry Bromley Davenport", "Iain Cassie", "Robert Smith"),
-                Arrays.asList("Maryam d'Abo","Philip Sayer"),
-                Género.HORROR,
-                1982,
-                "https://image.ibb.co/kzY1hd/xtro.jpg",
-                Arrays.asList("bad movie","funny","cult", "cult movie", "redlettermedia"));
-
-        Película pBarbarella = new Película(4, "Barbarella",
-                Arrays.asList("Roger Vadim"),
-                Arrays.asList("Terry Southern"),
-                Arrays.asList("Jane Fonda","John Phillip Law"),
-                Género.SCIENCE_FICTION,
-                1968,
-                "https://image.ibb.co/bUqxNd/barbarella.jpg",
-                Arrays.asList("italian cult", "cult movie"));
-
-        Película pTHX = new Película(5, "THX 1138",
-                Arrays.asList("George Lucas"),
-                Arrays.asList("George Lucas", "Walter Murch", "Matthew Robbins"),
-                Arrays.asList("Robert Duvall","Maggie McOmie"),
-                Género.SCIENCE_FICTION,
-                1971,
-                "https://image.ibb.co/b6NGFy/thxii83.jpg",
-                Arrays.asList("old movie", "cult movie", "star wars"));
-
-        Película pAnnihilation = new Película(6, "Annihilation",
-                Arrays.asList("Alex Garland"),
-                Arrays.asList("Alex Garland"),
-                Arrays.asList("Natalie Portman","Gina Rodriguez","Oscar Isaac"),
-                Género.SCIENCE_FICTION,
-                2018,
-                "https://image.ibb.co/irYv8J/annihilation.jpg",
-                Arrays.asList("ex_machina","ex machina", "netflix"));
-
-        Usuario u1 = new Usuario(1, "r", "roberto");
-        Usuario u2 = new Usuario(2, "admin", "admin", true);
-        ListaUsuarios.addUser(u1);
-        ListaUsuarios.addUser(u2);
-
-        ListaUsuarios.blockUser(u1.getUsername());
-
-
-
-
-
-        ListaPelículas.addSysMovie(p2001);
-        ListaPelículas.addSysMovie(pAlien);
-        ListaPelículas.addSysMovie(pXtro);
-        ListaPelículas.addSysMovie(pBarbarella);
-        ListaPelículas.addSysMovie(pTHX);
-        ListaPelículas.addSysMovie(pAnnihilation);
-
-        ListaFavoritas.addFavMovie(pAlien);
-        ListaFavoritas.addFavMovie(pBarbarella);
-        ListaFavoritas.addFavMovie(pTHX);
-
-        pAlien.addComentario(Arrays.asList(u1, "Classic horror/scifi movie."));
-        pAlien.addComentario(Arrays.asList(u2, "Awesome movie."));
-        p2001.addComentario(Arrays.asList(u2, "A masterpiece."));
-
-
-
-
-        /*
-        https://image.ibb.co/iZpVay/bladerunner.jpg
-        https://image.ibb.co/j6EwFy/logo.png
-        https://image.ibb.co/cSc58J/m2001.jpg
-        https://image.ibb.co/j1uVay/metropolis.jpg
-        https://image.ibb.co/karXoJ/oldboy.jpg
-        https://image.ibb.co/b6NGFy/thxii83.jpg
-        https://image.ibb.co/kzY1hd/xtro.jpg
-        https://image.ibb.co/gX4P2d/alien.jpg
-        https://image.ibb.co/irYv8J/annihilation.jpg
-        https://image.ibb.co/bUqxNd/barbarella.jpg
-         */
-
-        //---------------------
     }
 
     private void populateAutoComplete() {

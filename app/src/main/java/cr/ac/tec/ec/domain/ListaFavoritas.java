@@ -43,4 +43,8 @@ public class ListaFavoritas {
             }
         }
     }
+
+    public static void setFavPelículas(List<Película> favPelículas) {
+        FavPelículas = favPelículas;
+    }
 }

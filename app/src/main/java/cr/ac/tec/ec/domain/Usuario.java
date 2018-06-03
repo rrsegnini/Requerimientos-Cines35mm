@@ -1,10 +1,12 @@
 package cr.ac.tec.ec.domain;
 
+import java.io.Serializable;
+
 /**
  * Created by CASA on 5/26/2018.
  */
 
-public class Usuario {
+public class Usuario implements Serializable{
     private int IdUsuario;
     private String username;
     private String password;

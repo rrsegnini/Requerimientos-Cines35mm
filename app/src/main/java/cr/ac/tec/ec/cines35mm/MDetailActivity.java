@@ -123,7 +123,7 @@ public class MDetailActivity extends AppCompatActivity {
                             Usuario.getInstance();
 
                             ListaPelículas.getMovieById(_MovieId)
-                                    .addComentario(Arrays.asList(Usuario.getInstance(), input.getText().toString()));
+                                    .addComentario(Arrays.asList((Object)Usuario.getInstance(), input.getText().toString()));
                             setReviews(_MovieId);
                             //m_Text = input.getText().toString();
                         }

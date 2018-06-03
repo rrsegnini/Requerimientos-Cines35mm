@@ -20,6 +20,10 @@ public class ListaPelículas {
         }
     }
 
+    public static void setSysPelículas(List<Película> data){
+        SysPelículas = data;
+    }
+
     public static Película getMovieById(int id){
         for (int i = 0; i<SysPelículas.size();i++){
             if (SysPelículas.get(i).getIdPelícula() == id){
