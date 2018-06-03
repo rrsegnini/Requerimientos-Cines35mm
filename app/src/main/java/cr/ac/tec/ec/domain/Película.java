@@ -39,6 +39,39 @@ public class Película {
         ListaPelículas.addSysMovie(this);
     }
 
+    public Película(int idPelícula, String nombre, List<String> directores, List<String> guionistas,
+                    List<String> actores, Género género, int año) {
+        IdPelícula = idPelícula;
+        Nombre = nombre;
+        Directores = directores;
+        Guionistas = guionistas;
+        Actores = actores;
+        Género = género;
+        Año = año;
+
+        ListaPelículas.addSysMovie(this);
+    }
+
+    public void setNombre(String nombre) {
+        Nombre = nombre;
+    }
+
+    public void setDirectores(List<String> directores) {
+        Directores = directores;
+    }
+
+    public void setGuionistas(List<String> guionistas) {
+        Guionistas = guionistas;
+    }
+
+    public void setActores(List<String> actores) {
+        Actores = actores;
+    }
+
+    public void setAño(int año) {
+        Año = año;
+    }
+
     public int getIdPelícula() {
         return IdPelícula;
     }

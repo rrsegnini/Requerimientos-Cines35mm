@@ -58,4 +58,16 @@ public class ListaPelículas {
         }
         return matches;
     }
+
+    public void editMovie(int id, Película p){
+        for (int i = 0; i<SysPelículas.size();i++){
+            if (SysPelículas.get(i).getIdPelícula() == id){
+                deleteMovie(SysPelículas.get(i).getIdPelícula());
+                addSysMovie(p);
+                break;
+            }
+        }
+    }
+
+
 }

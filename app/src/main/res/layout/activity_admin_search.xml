@@ -4,29 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="cr.ac.tec.ec.admin.AdminMainActivity">
+    tools:context="cr.ac.tec.ec.admin.AdminSearchActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/admin_btnAddMovie"
+        <SearchView
+            android:id="@+id/search_svwSearch"
             android:layout_width="match_parent"
-            android:layout_height="188dp"
-            android:text="@string/AddMovie" />
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/admin_btnBlock"
-            android:layout_width="match_parent"
-            android:layout_height="191dp"
-            android:text="Block user" />
+        </SearchView>
 
-        <Button
-            android:id="@+id/admin_btnEditMovie"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="201dp"
-            android:text="Edit movie" />
+            android:layout_height="match_parent">
+
+            <TableLayout
+                android:id="@+id/search_tblMatches"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </TableLayout>
+
+        </ScrollView>
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

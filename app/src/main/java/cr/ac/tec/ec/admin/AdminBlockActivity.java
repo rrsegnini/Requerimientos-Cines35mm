@@ -8,15 +8,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import cr.ac.tec.ec.cines35mm.R;
-import pl.aprilapps.easyphotopicker.EasyImage;
-import pl.aprilapps.easyphotopicker.EasyImageConfig;
 
-public class AdminMovieActivity extends AppCompatActivity {
+public class AdminBlockActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_movie);
+        setContentView(R.layout.activity_admin_block);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -24,21 +22,8 @@ public class AdminMovieActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-        findViewById(R.id.admin_webWeb);
-
-
-
-
-        findViewById(R.id.detail_imgPoster).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EasyImage.openGallery(AdminMovieActivity.this,
-                        EasyImageConfig.REQ_PICK_PICTURE_FROM_GALLERY);
+                Snackbar.make(view, "Block user?", Snackbar.LENGTH_LONG)
+                        .setAction("BLOCK", null).show();
             }
         });
     }

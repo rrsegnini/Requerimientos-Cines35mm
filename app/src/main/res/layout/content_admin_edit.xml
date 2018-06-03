@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="cr.ac.tec.ec.admin.AdminMovieActivity"
-    tools:showIn="@layout/activity_admin_movie">
+    tools:context="cr.ac.tec.ec.admin.AdminEditActivity"
+    tools:showIn="@layout/activity_admin_edit">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -24,7 +24,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="430dp"
                     android:background="@color/colorPrimaryDark"
                     android:orientation="horizontal">
 
@@ -103,10 +103,56 @@
 
                 </LinearLayout>
 
-                <WebView
-                    android:id="@+id/admin_webWeb"
+                <Space
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="30dp"
+                    android:background="@color/colorPrimary"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:foreground="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/detail_txtReviewTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hapticFeedbackEnabled="false"
+                    android:text="@string/reviewsTitle"
+                    android:textAlignment="center"
+                    android:textSize="36sp"
+                    tools:text="@string/reviewsTitle" />
+
+                <TableLayout
+                    android:id="@+id/detail_tblReviews"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/darker_gray">
+
+                    <TableRow
+                        android:id="@+id/detail_tbrColumn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/username"
+                            android:layout_width="203dp"
+                            android:layout_height="wrap_content"
+                            android:lineSpacingExtra="18sp"
+                            android:text="USERNAME"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            tools:text="USERNAME" />
+
+                        <TextView
+                            android:id="@+id/review"
+                            android:layout_width="147dp"
+                            android:layout_height="wrap_content"
+                            android:text="REVIEW"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            tools:text="REVIEW" />
+
+                    </TableRow>
+                </TableLayout>
 
             </LinearLayout>
         </RelativeLayout>
