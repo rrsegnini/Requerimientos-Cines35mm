@@ -52,7 +52,10 @@ public class ListaRecomendaciones {
     }
 
     public static List<Película> getRecos(){
+        ListaFavoritas lp = Usuario.getInstance().getListaFavoritas();
+        lp.refreshMovies();
         List<Película> favs = Usuario.getInstance().getListaFavoritas().getFavMovies();
+
         List<Película> syspelículas = ListaPelículas.getSysPelículas();
         List<Película> recos = new ArrayList<>();
 

@@ -71,7 +71,7 @@ public class MDetailActivity extends AppCompatActivity {
                                     try{
                                         Película p = ListaPelículas.getMovieById(_MovieId);
                                         Usuario.getInstance().getListaFavoritas().addFavMovie(p);
-                                        cr.ac.tec.ec.data.Database.createFavMoviesData(MDetailActivity.this);
+                                        cr.ac.tec.ec.data.Database.createUsersData(MDetailActivity.this);
                                         Toast.makeText(MDetailActivity.this, "Movie added!",
                                                 Toast.LENGTH_LONG).show();
                                     }catch(Exception e){
@@ -89,7 +89,7 @@ public class MDetailActivity extends AppCompatActivity {
                                 public void onClick(View view) {
                                     try {
                                         Usuario.getInstance().getListaFavoritas().deleteMovie(_MovieId);
-                                        cr.ac.tec.ec.data.Database.createFavMoviesData(MDetailActivity.this);
+                                        cr.ac.tec.ec.data.Database.createUsersData(MDetailActivity.this);
                                         Toast.makeText(MDetailActivity.this, "Removed" +
                                                         " from Favourites!",
                                                 Toast.LENGTH_LONG).show();

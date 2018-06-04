@@ -220,6 +220,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mAuthTask.execute((Void) null);
 
             Usuario.getInstance().logUser(ListaUsuarios.getUser(email));
+            //cr.ac.tec.ec.data.Database.loadDataFavs(this);
             if (ListaUsuarios.getUser(email).isAdmin()){
                 Intent mainScreen = new Intent(this, AdminMainActivity.class);
                 startActivity(mainScreen);

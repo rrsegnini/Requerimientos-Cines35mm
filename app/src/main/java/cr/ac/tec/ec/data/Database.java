@@ -132,9 +132,9 @@ public class Database {
         Usuario u1 = new Usuario(1, "r", "roberto");
         Usuario u2 = new Usuario(2, "admin", "admin", true);
 
-        u1.getListaFavoritas().addFavMovie(pAlien);
+        /*u1.getListaFavoritas().addFavMovie(pAlien);
         u1.getListaFavoritas().addFavMovie(pBarbarella);
-        u1.getListaFavoritas().addFavMovie(pTHX);
+        u1.getListaFavoritas().addFavMovie(pTHX);*/
 
         ListaUsuarios.addUser(u1);
         ListaUsuarios.addUser(u2);
@@ -157,7 +157,7 @@ public class Database {
         createMoviesData(context);
         createUsersData(context);
         createBlockedUsersData(context);
-        createFavMoviesData(context);
+        //createFavMoviesData(context);
 
         /*
         https://image.ibb.co/iZpVay/bladerunner.jpg
@@ -222,14 +222,9 @@ public class Database {
 
     public static void createFavMoviesData(Activity context) {
         try {
-            //ArrayList al = new ArrayList();
-            //do something with your ArrayList
-            FileOutputStream fos =
-                    new FileOutputStream(new File(context.getFilesDir(), "favmoviesdata.txt"));
-            ObjectOutputStream oos =
-                    new ObjectOutputStream(fos);
-            oos.writeObject(Usuario.getInstance().getListaFavoritas().getFavMovies());
-            oos.close();
+
+            //(Usuario.getInstance().getListaFavoritas().getFavMovies());
+
         } catch (Exception e) {
             System.err.println(e.toString());
         }
@@ -238,7 +233,21 @@ public class Database {
 
 
 
+    public static void loadDataFavs(Activity context){{
+        try {
+            FileInputStream fos2 =
+                    new FileInputStream(new File(context.getFilesDir(), "favmoviesdata.txt"));
+            ObjectInputStream oos2 =
+                    new ObjectInputStream(fos2);
 
+            List<Película> favmovieslist = (ArrayList<Película>) oos2.readObject();
+            Usuario.getInstance().getListaFavoritas().setFavPelículas(favmovieslist);
+            oos2.close();
+        }catch(Exception e){
+            Log.d("App",e.getMessage());
+        }
+    }
+    }
     public static void loadData(Activity context){
         try {
             //ArrayList al = new ArrayList();
@@ -253,14 +262,6 @@ public class Database {
             oos.close();
 
 
-            FileInputStream fos2 =
-                    new FileInputStream(new File(context.getFilesDir(), "favmoviesdata.txt"));
-            ObjectInputStream oos2 =
-                    new ObjectInputStream(fos2);
-
-            List<Película> favmovieslist = (ArrayList<Película>) oos2.readObject();
-            Usuario.getInstance().getListaFavoritas().setFavPelículas(favmovieslist);
-            oos2.close();
 
 
 
@@ -296,7 +297,7 @@ public class Database {
 
 
         }catch (Exception e){
-            System.err.println(e.getMessage());
+            Log.d("App",e.getMessage());
         }
 
     }

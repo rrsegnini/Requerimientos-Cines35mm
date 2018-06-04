@@ -3,8 +3,10 @@ package cr.ac.tec.ec.cines35mm;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.annotation.DrawableRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,7 +55,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setMainScreen(){
-        ImageView img = findViewById(R.id.main_imgReco1);
+        ImageView img = findViewById(R.id.main_imgNextRecent);
+        ImageView img2 = findViewById(R.id.main_imgRecent1);
+        ImageView img3 = findViewById(R.id.main_imgPrevRecent);
+
+
+        img.setImageDrawable(null);
+        img2.setImageDrawable(null);
+        img3.setImageDrawable(null);
 
         List<Película> sys_movies = ListaPelículas.getSysPelículas();
         List<Película> fav_movies = Usuario.getInstance().getListaFavoritas().getFavMovies();
@@ -61,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
        Arrays.asList((ImageView) findViewById(R.id.main_imgReco1),
                 (ImageView) findViewById(R.id.main_imgRecent1));
 
-        for (int i = 0; i<sys_movies.size(); i++){
-            System.out.println(sys_movies.get(i).getNombre());
+        for (int i = 0; i<fav_movies.size(); i++){
+            System.out.println(fav_movies.get(i).getNombre());
         }
 
 
