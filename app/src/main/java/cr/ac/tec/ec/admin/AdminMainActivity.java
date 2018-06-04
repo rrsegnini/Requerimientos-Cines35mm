@@ -62,6 +62,7 @@ public class AdminMainActivity extends AppCompatActivity {
                         String user = input.getText().toString();
                         if (ListaUsuarios.isBlocked(user)){
                             if (ListaUsuarios.unblockUser(user)) {
+                                cr.ac.tec.ec.data.Database.createBlockedUsersData(AdminMainActivity.this);
                                 Toast.makeText(AdminMainActivity.this, "User UNblocked!",
                                         Toast.LENGTH_LONG).show();
                             } else {
@@ -71,6 +72,7 @@ public class AdminMainActivity extends AppCompatActivity {
 
                         }else {
                             if (ListaUsuarios.blockUser(user)) {
+                                cr.ac.tec.ec.data.Database.createBlockedUsersData(AdminMainActivity.this);
                                 Toast.makeText(AdminMainActivity.this, "User blocked!",
                                         Toast.LENGTH_LONG).show();
                             } else {

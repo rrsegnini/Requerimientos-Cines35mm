@@ -21,9 +21,11 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +34,7 @@ import java.util.Arrays;
 import cr.ac.tec.ec.cines35mm.MDetailActivity;
 import cr.ac.tec.ec.cines35mm.R;
 import cr.ac.tec.ec.cines35mm.SearchActivity;
+import cr.ac.tec.ec.domain.Género;
 import cr.ac.tec.ec.domain.ListaFavoritas;
 import cr.ac.tec.ec.domain.ListaPelículas;
 import cr.ac.tec.ec.domain.Película;
@@ -48,6 +51,9 @@ public class AdminMovieActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_movie);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Spinner mySpinner = findViewById(R.id.detail_spnGen);
+        mySpinner.setAdapter(new ArrayAdapter<Género>(this, android.R.layout.simple_list_item_1, Género.values()));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -66,22 +72,38 @@ public class AdminMovieActivity extends AppCompatActivity {
                                     TextView year = findViewById(R.id.detail_txtYear);
                                     TextView actors = findViewById(R.id.detail_txtActors);
                                     TextView poster = findViewById(R.id.admin_txtURL);
+                                    Spinner gen = findViewById(R.id.detail_spnGen);
 
-                                    p.setNombre(String.valueOf(title.getText()));
-                                    p.setDirectores(Arrays.asList(String
-                                            .valueOf(directors.getText()).split("\\,")));
-                                    p.setGuionistas(Arrays.asList(String
-                                            .valueOf(screenplay.getText()).split("\\,")));
-                                    p.setAño(Integer.parseInt(String.valueOf(year.getText())));
-                                    p.setActores(Arrays.asList(String
-                                            .valueOf(actors.getText()).split("\\,")));
-                                    p.setPosterURL(String.valueOf(poster.getText()));
+                                    if (title.getText().toString().length() != 0
+                                            && directors.getText().toString().length() != 0
+                                            && screenplay.getText().toString().length() != 0
+                                            && year.getText().toString().length() != 0
+                                            && actors.getText().toString().length() != 0) {
 
-                                    ListaPelículas.addSysMovie(p);
+                                        p.setNombre(String.valueOf(title.getText()));
+                                        p.setDirectores(Arrays.asList(String
+                                                .valueOf(directors.getText()).split("\\,")));
+                                        p.setGuionistas(Arrays.asList(String
+                                                .valueOf(screenplay.getText()).split("\\,")));
+                                        p.setAño(Integer.parseInt(String.valueOf(year.getText())));
+                                        p.setActores(Arrays.asList(String
+                                                .valueOf(actors.getText()).split("\\,")));
+                                        p.setPosterURL(String.valueOf(poster.getText()));
+
+                                        p.setGénero(Género.valueOf(gen.getSelectedItem().toString()));
 
 
-                                    Toast.makeText(AdminMovieActivity.this, "Movie saved!",
-                                            Toast.LENGTH_LONG).show();
+                                        ListaPelículas.addSysMovie(p);
+                                        cr.ac.tec.ec.data.Database.createMoviesData(AdminMovieActivity.this);
+
+
+                                        Toast.makeText(AdminMovieActivity.this, "Movie saved!",
+                                                Toast.LENGTH_LONG).show();
+                                    }else{
+                                        Toast.makeText(AdminMovieActivity.this,
+                                                "Error: please enter all the information",
+                                                Toast.LENGTH_LONG).show();
+                                    }
                                 }catch(Exception e){
                                     Toast.makeText(AdminMovieActivity.this, e.getMessage(),
                                             Toast.LENGTH_LONG).show();
@@ -206,19 +228,6 @@ public class AdminMovieActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-        findViewById(R.id.detail_imgPoster).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                EasyImage.openGallery(AdminMovieActivity.this,
-                        EasyImageConfig.REQ_PICK_PICTURE_FROM_GALLERY);
-            }
-        });
 
     }
 

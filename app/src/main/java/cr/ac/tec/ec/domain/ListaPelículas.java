@@ -1,7 +1,12 @@
 package cr.ac.tec.ec.domain;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import cr.ac.tec.ec.utility.MString;
 
 /**
  * Created by CASA on 5/26/2018.
@@ -63,6 +68,43 @@ public class ListaPelículas {
         return matches;
     }
 
+
+    public static List<Película> searchMoviesByValue(String value){
+        List<Película> matches = new ArrayList<>();
+        if (value.isEmpty()){
+            return matches;
+        }
+
+        ///List<Película> favs = ListaFavoritas.getFavMovies();
+        List<Película> syspelículas = SysPelículas;
+
+
+            for (Película sm: syspelículas){
+                if (sm.getNombre().toUpperCase().contains(value.toUpperCase())){
+                    if (!matches.contains(sm)) {
+                        matches.add(sm);
+
+                    }
+                }else {
+                    if (MString.contains(sm.getDirectores(), value)){
+                        if (!matches.contains(sm)) {
+                            matches.add(sm);
+                        }
+                    }else{
+                        if (MString.contains(sm.getActores(), value)){
+                            if (!matches.contains(sm)) {
+                                matches.add(sm);
+                            }
+                        }
+                    }
+                }
+            }
+
+        //Collections.shuffle(recos);
+        return matches;
+
+    }
+
     public void editMovie(int id, Película p){
         for (int i = 0; i<SysPelículas.size();i++){
             if (SysPelículas.get(i).getIdPelícula() == id){
@@ -72,6 +114,7 @@ public class ListaPelículas {
             }
         }
     }
+
 
 
 }

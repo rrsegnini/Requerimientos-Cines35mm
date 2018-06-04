@@ -41,7 +41,7 @@ public class AdminSearchActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public boolean onQueryTextChange(String s) {
-                List<Película> matches = ListaPelículas.getMoviesByName(s);
+                List<Película> matches = ListaPelículas.searchMoviesByValue(s);
                 TableLayout matches_table = findViewById(R.id.search_tblMatches);
                 if (matches.isEmpty()){
                     matches_table.removeAllViews();

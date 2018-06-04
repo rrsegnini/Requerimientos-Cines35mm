@@ -10,9 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ import java.util.List;
 
 import cr.ac.tec.ec.cines35mm.MDetailActivity;
 import cr.ac.tec.ec.cines35mm.R;
+import cr.ac.tec.ec.domain.Género;
 import cr.ac.tec.ec.domain.ListaFavoritas;
 import cr.ac.tec.ec.domain.ListaPelículas;
 import cr.ac.tec.ec.domain.Película;
@@ -38,6 +41,12 @@ public class AdminEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_edit);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        Spinner mySpinner = findViewById(R.id.detail_spnGen2);
+        mySpinner.setAdapter(new ArrayAdapter<Género>(this, android.R.layout.simple_list_item_1, Género.values()));
+
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +89,7 @@ public class AdminEditActivity extends AppCompatActivity {
                                     TextView year = findViewById(R.id.detail_txtYear);
                                     TextView actors = findViewById(R.id.detail_txtActors);
                                     ImageView poster = findViewById(R.id.detail_imgPoster);
+                                    Spinner gen = findViewById(R.id.detail_spnGen2);
 
                                     p.setNombre(String.valueOf(title.getText()));
 
@@ -94,7 +104,9 @@ public class AdminEditActivity extends AppCompatActivity {
                                     p.setActores(Arrays.asList(String
                                             .valueOf(actors.getText()).split("\\,")));
 
+                                    p.setGénero(Género.valueOf(gen.getSelectedItem().toString()));
 
+                                    cr.ac.tec.ec.data.Database.createMoviesData(AdminEditActivity.this);
 
 
                                     Toast.makeText(AdminEditActivity.this, "Saved!",
@@ -113,11 +125,9 @@ public class AdminEditActivity extends AppCompatActivity {
 
 
         setDetails();
-        RatingBar rating = findViewById(R.id.detail_barRating);
-        Película p = ListaPelículas.getMovieById(_MovieId);
-        rating.setRating(p.getCalificación());
 
-        rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+
+        /*rating.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
                 System.out.println(ratingBar.getRating());
@@ -125,7 +135,7 @@ public class AdminEditActivity extends AppCompatActivity {
                 p.setCalificación(ratingBar.getRating());
 
             }
-        });
+        });*/
     }
 
 
@@ -145,6 +155,7 @@ public class AdminEditActivity extends AppCompatActivity {
         TextView year = findViewById(R.id.detail_txtYear);
         TextView actors = findViewById(R.id.detail_txtActors);
         ImageView poster = findViewById(R.id.detail_imgPoster);
+        Spinner gen = findViewById(R.id.detail_spnGen2);
 
 
         title.setText(p.getNombre());
@@ -152,6 +163,15 @@ public class AdminEditActivity extends AppCompatActivity {
         screenplay.setText(toString(p.getGuionistas()));
         year.setText(String.valueOf(p.getAño()));
         actors.setText(toString(p.getActores()));
+
+        int spinsize = gen.getCount();
+        int igen = 0;
+        for (int i=0;i<spinsize;i++){
+            if (gen.getItemAtPosition(i).toString().equals(p.getGénero().toString())){
+                igen = i;
+            }
+        }
+        gen.setSelection(igen);
 
         new cr.ac.tec.ec.utility.Images.DownloadImageTask((ImageView) poster)
                 .execute(p.getPosterURL());

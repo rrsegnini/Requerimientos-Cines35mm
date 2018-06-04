@@ -71,6 +71,7 @@ public class MDetailActivity extends AppCompatActivity {
                                     try{
                                         Película p = ListaPelículas.getMovieById(_MovieId);
                                         ListaFavoritas.addFavMovie(p);
+                                        cr.ac.tec.ec.data.Database.createFavMoviesData(MDetailActivity.this);
                                         Toast.makeText(MDetailActivity.this, "Movie added!",
                                                 Toast.LENGTH_LONG).show();
                                     }catch(Exception e){
@@ -88,6 +89,7 @@ public class MDetailActivity extends AppCompatActivity {
                                 public void onClick(View view) {
                                     try {
                                         ListaFavoritas.deleteMovie(_MovieId);
+                                        cr.ac.tec.ec.data.Database.createFavMoviesData(MDetailActivity.this);
                                         Toast.makeText(MDetailActivity.this, "Removed" +
                                                         " from Favourites!",
                                                 Toast.LENGTH_LONG).show();
@@ -97,7 +99,9 @@ public class MDetailActivity extends AppCompatActivity {
                                     }
                                 }
                             }).show();
+
                 }
+
             }
         });
 
@@ -105,7 +109,7 @@ public class MDetailActivity extends AppCompatActivity {
         add_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!ListaUsuarios.isBlocked(Usuario.getInstance())) {
+                if (!ListaUsuarios.isBlocked(Usuario.getInstance().getUsername())) {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(MDetailActivity.this);
                     builder.setTitle("Add review");
@@ -125,6 +129,7 @@ public class MDetailActivity extends AppCompatActivity {
                             ListaPelículas.getMovieById(_MovieId)
                                     .addComentario(Arrays.asList((Object)Usuario.getInstance(), input.getText().toString()));
                             setReviews(_MovieId);
+                            cr.ac.tec.ec.data.Database.createMoviesData(MDetailActivity.this);
                             //m_Text = input.getText().toString();
                         }
                     });
@@ -154,6 +159,7 @@ public class MDetailActivity extends AppCompatActivity {
                 System.out.println(ratingBar.getRating());
                 Película p = ListaPelículas.getMovieById(_MovieId);
                 p.setCalificación(ratingBar.getRating());
+                cr.ac.tec.ec.data.Database.createMoviesData(MDetailActivity.this);
 
             }
         });

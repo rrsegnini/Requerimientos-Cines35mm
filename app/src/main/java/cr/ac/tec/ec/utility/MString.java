@@ -18,5 +18,14 @@ public class MString {
         }
         return result;
     }
+
+    public static boolean contains(List<String> xs, String s){
+        for (String n: xs){
+            if (n.toUpperCase().contains(s.toUpperCase())){
+                return true;
+            }
+        }
+        return false;
+    }
 }
 

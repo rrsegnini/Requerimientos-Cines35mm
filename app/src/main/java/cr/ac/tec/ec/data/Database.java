@@ -35,16 +35,17 @@ import cr.ac.tec.ec.domain.Usuario;
 public class Database {
     private static MobileServiceClient mClient;
 
-    public static void connect(Activity context){
-        try{
+    public static void connect(Activity context) {
+        try {
             mClient = new MobileServiceClient(
                     "https://requerimientos-cines35mm.azurewebsites.net",
                     context
             );
-        }catch(Exception e){}
+        } catch (Exception e) {
+        }
     }
 
-    public static MobileServiceList<Género> getGens(){
+    public static MobileServiceList<Género> getGens() {
         try {
             final MobileServiceTable<Género> mGens = mClient.getTable(Género.class);
             //return mGens.execute().get();
@@ -58,9 +59,7 @@ public class Database {
                         return mGens.execute().get();
                         //Log.d("debug","data success");
                         //String str="";
-                    }
-                    catch(Exception e)
-                    {
+                    } catch (Exception e) {
 
                     }
                     return null;
@@ -68,45 +67,45 @@ public class Database {
             }.execute();
 
             return null;
-        }catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
 
 
-    public static void initialize(Activity context){
+    public static void initialize(Activity context) {
 
         Película p2001 = new Película(1, "2001: A Space Odyssey",
                 Arrays.asList("Stanley Kubrick"),
-                Arrays.asList("Stanley Kubrick","Arthur C. Clarke"),
+                Arrays.asList("Stanley Kubrick", "Arthur C. Clarke"),
                 Arrays.asList("Keir Dullea"),
                 cr.ac.tec.ec.domain.Género.SCIENCE_FICTION,
                 1968,
                 "https://image.ibb.co/cSc58J/m2001.jpg",
-                Arrays.asList("classic","cult classic", "cult movie"));
+                Arrays.asList("classic", "cult classic", "cult movie"));
 
         Película pAlien = new Película(2, "Alien",
                 Arrays.asList("Ridley Scott"),
                 Arrays.asList("Dan O'Bannon"),
-                Arrays.asList("Sigourney Weaver","John Hurt"),
+                Arrays.asList("Sigourney Weaver", "John Hurt"),
                 cr.ac.tec.ec.domain.Género.SCIENCE_FICTION,
                 1979,
                 "https://image.ibb.co/gX4P2d/alien.jpg",
-                Arrays.asList("classic","cult", "cult movie", "xenomorph"));
+                Arrays.asList("classic", "cult", "cult movie", "xenomorph"));
 
         Película pXtro = new Película(3, "Xtro",
                 Arrays.asList("Harry Bromley Davenport"),
                 Arrays.asList("Harry Bromley Davenport", "Iain Cassie", "Robert Smith"),
-                Arrays.asList("Maryam d'Abo","Philip Sayer"),
+                Arrays.asList("Maryam d'Abo", "Philip Sayer"),
                 cr.ac.tec.ec.domain.Género.HORROR,
                 1982,
                 "https://image.ibb.co/kzY1hd/xtro.jpg",
-                Arrays.asList("bad movie","funny","cult", "cult movie", "redlettermedia"));
+                Arrays.asList("bad movie", "funny", "cult", "cult movie", "redlettermedia"));
 
         Película pBarbarella = new Película(4, "Barbarella",
                 Arrays.asList("Roger Vadim"),
                 Arrays.asList("Terry Southern"),
-                Arrays.asList("Jane Fonda","John Phillip Law"),
+                Arrays.asList("Jane Fonda", "John Phillip Law"),
                 cr.ac.tec.ec.domain.Género.SCIENCE_FICTION,
                 1968,
                 "https://image.ibb.co/bUqxNd/barbarella.jpg",
@@ -115,7 +114,7 @@ public class Database {
         Película pTHX = new Película(5, "THX 1138",
                 Arrays.asList("George Lucas"),
                 Arrays.asList("George Lucas", "Walter Murch", "Matthew Robbins"),
-                Arrays.asList("Robert Duvall","Maggie McOmie"),
+                Arrays.asList("Robert Duvall", "Maggie McOmie"),
                 cr.ac.tec.ec.domain.Género.SCIENCE_FICTION,
                 1971,
                 "https://image.ibb.co/b6NGFy/thxii83.jpg",
@@ -124,20 +123,16 @@ public class Database {
         Película pAnnihilation = new Película(6, "Annihilation",
                 Arrays.asList("Alex Garland"),
                 Arrays.asList("Alex Garland"),
-                Arrays.asList("Natalie Portman","Gina Rodriguez","Oscar Isaac"),
+                Arrays.asList("Natalie Portman", "Gina Rodriguez", "Oscar Isaac"),
                 cr.ac.tec.ec.domain.Género.SCIENCE_FICTION,
                 2018,
                 "https://image.ibb.co/irYv8J/annihilation.jpg",
-                Arrays.asList("ex_machina","ex machina", "netflix"));
+                Arrays.asList("ex_machina", "ex machina", "netflix"));
 
         Usuario u1 = new Usuario(1, "r", "roberto");
         Usuario u2 = new Usuario(2, "admin", "admin", true);
         ListaUsuarios.addUser(u1);
         ListaUsuarios.addUser(u2);
-
-
-
-
 
 
         ListaPelículas.addSysMovie(p2001);
@@ -152,14 +147,14 @@ public class Database {
         ListaFavoritas.addFavMovie(pTHX);
 
         pAlien.addComentario(Arrays.asList((Object) u1, "Classic horror/scifi movie."));
-        pAlien.addComentario(Arrays.asList((Object)u2, "Awesome movie."));
+        pAlien.addComentario(Arrays.asList((Object) u2, "Awesome movie."));
         p2001.addComentario(Arrays.asList((Object) u2, "A masterpiece."));
 
 
         createMoviesData(context);
-                createUsersData(context);
+        createUsersData(context);
         createBlockedUsersData(context);
-                createFavMoviesData(context);
+        createFavMoviesData(context);
 
         /*
         https://image.ibb.co/iZpVay/bladerunner.jpg
@@ -177,8 +172,8 @@ public class Database {
         //---------------------
     }
 
-    private static void createMoviesData(Activity context){
-        try{
+    public static void createMoviesData(Activity context) {
+        try {
             //ArrayList al = new ArrayList();
             //do something with your ArrayList
             FileOutputStream fos =
@@ -187,12 +182,13 @@ public class Database {
                     new ObjectOutputStream(fos);
             oos.writeObject(ListaPelículas.getSysPelículas());
             oos.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e.toString());
         }
     }
-    private static void createUsersData(Activity context){
-        try{
+
+    public static void createUsersData(Activity context) {
+        try {
             //ArrayList al = new ArrayList();
             //do something with your ArrayList
             FileOutputStream fos =
@@ -201,12 +197,13 @@ public class Database {
                     new ObjectOutputStream(fos);
             oos.writeObject(ListaUsuarios.getListaUsuarios());
             oos.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e.toString());
         }
     }
-    private static void createBlockedUsersData(Activity context){
-        try{
+
+    public static void createBlockedUsersData(Activity context) {
+        try {
             //ArrayList al = new ArrayList();
             //do something with your ArrayList
             FileOutputStream fos =
@@ -215,13 +212,13 @@ public class Database {
                     new ObjectOutputStream(fos);
             oos.writeObject(ListaUsuarios.getListaUsuariosBloqueados());
             oos.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e.toString());
         }
     }
 
-    private static void createFavMoviesData(Activity context){
-        try{
+    public static void createFavMoviesData(Activity context) {
+        try {
             //ArrayList al = new ArrayList();
             //do something with your ArrayList
             FileOutputStream fos =
@@ -230,10 +227,31 @@ public class Database {
                     new ObjectOutputStream(fos);
             oos.writeObject(ListaFavoritas.getFavMovies());
             oos.close();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e.toString());
         }
     }
+
+
+    /*try{
+
+        }catch(Exception e){}*/
+
+   /* public static void saveFavMoviesData(Activity context){
+        try{
+            FileInputStream fos2 =
+                    new FileInputStream(new File(context.getFilesDir(), "favmoviesdata.txt"));
+            ObjectInputStream oos2 =
+                    new ObjectInputStream(fos2);
+
+            List<Película> favmovieslist = (ArrayList<Película>) oos2.readObject();
+            ListaFavoritas.setFavPelículas(favmovieslist);
+            oos2.close();
+
+        }catch(Exception e){}
+
+    }*/
+
 
 
 

@@ -132,5 +132,7 @@ public class Película implements Serializable{
         Comentarios.add(_comentario);
     }
 
-
+    public void setGénero(cr.ac.tec.ec.domain.Género género) {
+        Género = género;
+    }
 }

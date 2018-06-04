@@ -119,8 +119,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
 
-        cr.ac.tec.ec.data.Database.initialize(this);
-        //cr.ac.tec.ec.data.Database.loadData(this);
+        //cr.ac.tec.ec.data.Database.initialize(this);
+        cr.ac.tec.ec.data.Database.loadData(this);
+        //ListaUsuarios.blockUser("r");
 
     }
 
