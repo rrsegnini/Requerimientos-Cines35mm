@@ -51,7 +51,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 if (matches.isEmpty()){
                     matches_table.removeAllViews();
                     Toast.makeText(SearchActivity.this,"No movie found :(",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_SHORT).show();
                     return false;
                 }else{
                     matches_table.removeAllViews();

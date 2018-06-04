@@ -21,7 +21,7 @@ public class ListaPelículas implements Serializable{
     }
 
     public static void addSysMovie(Película p){
-        if (!movieExists(p.getIdPelícula())){
+        if (!movieExists(p.getNombre())){
                 SysPelículas.add(p);
         }
     }
@@ -42,6 +42,15 @@ public class ListaPelículas implements Serializable{
     public static boolean movieExists(int id){
         for (int i = 0; i<SysPelículas.size();i++){
             if (SysPelículas.get(i).getIdPelícula() == id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean movieExists(String name){
+        for (int i = 0; i<SysPelículas.size();i++){
+            if (SysPelículas.get(i).getNombre().equals(name)){
                 return true;
             }
         }

@@ -135,4 +135,8 @@ public class Película implements Serializable{
     public void setGénero(cr.ac.tec.ec.domain.Género género) {
         Género = género;
     }
+
+    public void setIdPelícula(int idPelícula) {
+        IdPelícula = idPelícula;
+    }
 }

@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.ValueCallback;
@@ -80,6 +81,7 @@ public class AdminMovieActivity extends AppCompatActivity {
                                             && year.getText().toString().length() != 0
                                             && actors.getText().toString().length() != 0) {
 
+                                        Log.d("EL ID: ", String.valueOf(title.getText().toString().hashCode()));
                                         p.setNombre(String.valueOf(title.getText()));
                                         p.setDirectores(Arrays.asList(String
                                                 .valueOf(directors.getText()).split("\\,")));
@@ -95,6 +97,7 @@ public class AdminMovieActivity extends AppCompatActivity {
 
                                         ListaPelículas.addSysMovie(p);
                                         cr.ac.tec.ec.data.Database.createMoviesData(AdminMovieActivity.this);
+                                        //cr.ac.tec.ec.data.Database.
 
 
                                         Toast.makeText(AdminMovieActivity.this, "Movie saved!",

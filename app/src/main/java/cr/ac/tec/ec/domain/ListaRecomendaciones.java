@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import cr.ac.tec.ec.utility.MString;
+
 /**
  * Created by CASA on 5/26/2018.
  */
@@ -52,8 +54,8 @@ public class ListaRecomendaciones {
     }
 
     public static List<Película> getRecos(){
-        ListaFavoritas lp = Usuario.getInstance().getListaFavoritas();
-        lp.refreshMovies();
+        ListaFavoritas lf = Usuario.getInstance().getListaFavoritas();
+        lf.refreshMovies();
         List<Película> favs = Usuario.getInstance().getListaFavoritas().getFavMovies();
 
         List<Película> syspelículas = ListaPelículas.getSysPelículas();
@@ -66,7 +68,7 @@ public class ListaRecomendaciones {
 
             for (Película sm: syspelículas){
                 if (sm.getGénero() == m.getGénero()){
-                    if (!recos.contains(sm) && !favs.contains(sm)) {
+                    if (!recos.contains(ListaPelículas.getMovieById(sm.getIdPelícula())) && !lf.movieExists(sm.getIdPelícula())) {
                         Log.d("APP", "MOVIE: " + sm.getNombre());
                         //System.out.println("MOVIE: " + sm.getNombre());
                         recos.add(sm);
@@ -75,14 +77,14 @@ public class ListaRecomendaciones {
                 }else {
                     for (String d: directors){
                         if (sm.getDirectores().contains(d)){
-                            if (!recos.contains(sm) && !favs.contains(sm)) {
+                            if (!recos.contains(ListaPelículas.getMovieById(sm.getIdPelícula())) && !lf.movieExists(sm.getIdPelícula())) {
                                 recos.add(sm);
 
                             }
                         }else{
                             for (String a: actors){
                                 if (sm.getActores().contains(a)){
-                                    if (!recos.contains(sm) && !favs.contains(sm)) {
+                                    if (!recos.contains(ListaPelículas.getMovieById(sm.getIdPelícula())) && !lf.movieExists(sm.getIdPelícula())) {
                                         recos.add(sm);
 
                                     }
