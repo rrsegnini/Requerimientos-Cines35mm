@@ -82,6 +82,7 @@ public class AdminMovieActivity extends AppCompatActivity {
                                             && actors.getText().toString().length() != 0) {
 
                                         Log.d("EL ID: ", String.valueOf(title.getText().toString().hashCode()));
+                                        p.setIdPelícula(ListaPelículas.getSysPelículas().size()+1);
                                         p.setNombre(String.valueOf(title.getText()));
                                         p.setDirectores(Arrays.asList(String
                                                 .valueOf(directors.getText()).split("\\,")));
