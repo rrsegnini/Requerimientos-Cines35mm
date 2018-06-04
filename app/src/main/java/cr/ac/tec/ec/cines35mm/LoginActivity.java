@@ -3,6 +3,8 @@ package cr.ac.tec.ec.cines35mm;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
@@ -19,6 +21,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -28,7 +31,9 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -54,9 +59,6 @@ import cr.ac.tec.ec.domain.Usuario;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
-
-
-
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -86,6 +88,64 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
 
         Database.connect(this);
+
+
+        findViewById(R.id.email_register).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                builder.setTitle("Register");
+                LinearLayout layout = new LinearLayout(LoginActivity.this);
+                layout.setOrientation(LinearLayout.VERTICAL);
+
+                final EditText input = new EditText(LoginActivity.this);
+                final EditText pass = new EditText(LoginActivity.this);
+                final EditText email = new EditText(LoginActivity.this);
+
+                input.setHint("Username");
+                email.setHint("Email");
+                pass.setHint("Password");
+
+                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_CLASS_TEXT);
+
+                layout.addView(input);
+                layout.addView(email);
+                layout.addView(pass);
+                builder.setView(layout);
+
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Usuario.getInstance();
+                        String user = input.getText().toString();
+                        String em = email.getText().toString();
+                        String ps = pass.getText().toString();
+
+                        if (user.length() != 0 && email.length() != 0 && ps.length() != 0 && ListaUsuarios.getUser(user)==null){
+
+                            //Usuario u1 = new Usuario(1, "r", "roberto");
+                            Usuario u = new Usuario(user.hashCode(), user, ps);
+                            ListaUsuarios.addUser(u);
+                            cr.ac.tec.ec.data.Database.createUsersData(LoginActivity.this);
+                            Toast.makeText(LoginActivity.this, "Registered successfully!", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(LoginActivity.this, "Invalid information", Toast.LENGTH_SHORT).show();
+                        }
+                        //m_Text = input.getText().toString();
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+            }
+        });
 
 
 
@@ -202,8 +262,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
+        } else if (!isEmailValid(email,password)) {
+            mEmailView.setError(("Invalid username or password"));
             focusView = mEmailView;
             cancel = true;
         }
@@ -231,9 +291,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
     }
 
-    private boolean isEmailValid(String email) {
+    private boolean isEmailValid(String email, String password) {
         //Replace////////////////////
-        return ListaUsuarios.validUser(email);
+        return ListaUsuarios.validUser(email) && ListaUsuarios.getUser(email).getPassword().equals(password);
     }
 
 
@@ -242,7 +302,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 4;
+        return password.length() != 0;
     }
 
     /**
