@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.Arrays;
 
 import cr.ac.tec.ec.cines35mm.MDetailActivity;
+import cr.ac.tec.ec.cines35mm.MainActivity;
 import cr.ac.tec.ec.cines35mm.R;
 import cr.ac.tec.ec.cines35mm.SearchActivity;
 import cr.ac.tec.ec.domain.ListaPelículas;
@@ -100,6 +101,17 @@ public class AdminMainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent new_intent = new Intent(AdminMainActivity.this,
                         AdminSearchActivity.class);
+
+                startActivity(new_intent);
+
+            }
+        });
+
+        findViewById(R.id.admin_btnApp).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent new_intent = new Intent(AdminMainActivity.this,
+                        MainActivity.class);
 
                 startActivity(new_intent);
 

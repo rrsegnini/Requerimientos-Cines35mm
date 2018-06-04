@@ -8,17 +8,17 @@ import java.util.List;
  */
 
 public class ListaFavoritas {
-    private static List<Película> FavPelículas = new ArrayList<>();
+    private  List<Película> FavPelículas = new ArrayList<>();
 
-    public static void addFavMovie(Película p){
+    public  void addFavMovie(Película p){
         FavPelículas.add(p);
     }
 
-    public static List<Película> getFavMovies(){
+    public  List<Película> getFavMovies(){
         return FavPelículas;
     }
 
-    public static boolean movieExists(int id){
+    public boolean movieExists(int id){
         for (int i = 0; i<FavPelículas.size();i++){
             if (FavPelículas.get(i).getIdPelícula() == id){
                 return true;
@@ -27,7 +27,7 @@ public class ListaFavoritas {
         return false;
     }
 
-    public static void refreshMovies(){
+    public void refreshMovies(){
         List<Película> sys_movies = ListaPelículas.getSysPelículas();
 
         for (Película m: FavPelículas){
@@ -36,7 +36,7 @@ public class ListaFavoritas {
         }
     }
 
-    public static void deleteMovie(int id){
+    public void deleteMovie(int id){
         for (int i = 0; i<FavPelículas.size();i++){
             if (FavPelículas.get(i).getIdPelícula() == id){
                 FavPelículas.remove(i);
@@ -44,7 +44,7 @@ public class ListaFavoritas {
         }
     }
 
-    public static void setFavPelículas(List<Película> favPelículas) {
+    public void setFavPelículas(List<Película> favPelículas) {
         FavPelículas = favPelículas;
     }
 }

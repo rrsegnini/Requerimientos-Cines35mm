@@ -16,6 +16,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import cr.ac.tec.ec.domain.Usuario;
 import cr.ac.tec.ec.utility.Images.*;
 
 import java.util.Collections;
@@ -50,7 +51,7 @@ public class FavActivity extends AppCompatActivity implements View.OnClickListen
         //favs_crd.removeAllViews();
         favs.removeAllViews();
         TableRow newRow = new TableRow(this);
-        List<Película> movies = ListaFavoritas.getFavMovies();
+        List<Película> movies = Usuario.getInstance().getListaFavoritas().getFavMovies();
         Collections.reverse(movies);
 
         int i = 0;

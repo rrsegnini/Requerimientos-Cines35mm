@@ -131,6 +131,11 @@ public class Database {
 
         Usuario u1 = new Usuario(1, "r", "roberto");
         Usuario u2 = new Usuario(2, "admin", "admin", true);
+
+        u1.getListaFavoritas().addFavMovie(pAlien);
+        u1.getListaFavoritas().addFavMovie(pBarbarella);
+        u1.getListaFavoritas().addFavMovie(pTHX);
+
         ListaUsuarios.addUser(u1);
         ListaUsuarios.addUser(u2);
 
@@ -142,9 +147,7 @@ public class Database {
         ListaPelículas.addSysMovie(pTHX);
         ListaPelículas.addSysMovie(pAnnihilation);
 
-        ListaFavoritas.addFavMovie(pAlien);
-        ListaFavoritas.addFavMovie(pBarbarella);
-        ListaFavoritas.addFavMovie(pTHX);
+
 
         pAlien.addComentario(Arrays.asList((Object) u1, "Classic horror/scifi movie."));
         pAlien.addComentario(Arrays.asList((Object) u2, "Awesome movie."));
@@ -225,32 +228,13 @@ public class Database {
                     new FileOutputStream(new File(context.getFilesDir(), "favmoviesdata.txt"));
             ObjectOutputStream oos =
                     new ObjectOutputStream(fos);
-            oos.writeObject(ListaFavoritas.getFavMovies());
+            oos.writeObject(Usuario.getInstance().getListaFavoritas().getFavMovies());
             oos.close();
         } catch (Exception e) {
             System.err.println(e.toString());
         }
     }
 
-
-    /*try{
-
-        }catch(Exception e){}*/
-
-   /* public static void saveFavMoviesData(Activity context){
-        try{
-            FileInputStream fos2 =
-                    new FileInputStream(new File(context.getFilesDir(), "favmoviesdata.txt"));
-            ObjectInputStream oos2 =
-                    new ObjectInputStream(fos2);
-
-            List<Película> favmovieslist = (ArrayList<Película>) oos2.readObject();
-            ListaFavoritas.setFavPelículas(favmovieslist);
-            oos2.close();
-
-        }catch(Exception e){}
-
-    }*/
 
 
 
@@ -275,7 +259,7 @@ public class Database {
                     new ObjectInputStream(fos2);
 
             List<Película> favmovieslist = (ArrayList<Película>) oos2.readObject();
-            ListaFavoritas.setFavPelículas(favmovieslist);
+            Usuario.getInstance().getListaFavoritas().setFavPelículas(favmovieslist);
             oos2.close();
 
 

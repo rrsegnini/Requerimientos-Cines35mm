@@ -131,4 +131,5 @@
     <string name="title_activity_admin_block">AdminBlockActivity</string>
     <string name="Block">Enter username to block</string>
     <string name="title_activity_admin_edit">AdminEditActivity</string>
+    <string name="OpenApp">View client app</string>
 </resources>

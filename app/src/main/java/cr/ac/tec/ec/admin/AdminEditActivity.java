@@ -63,7 +63,7 @@ public class AdminEditActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        ListaFavoritas.refreshMovies();
+        Usuario.getInstance().getListaFavoritas().refreshMovies();
         setReviews(_MovieId);
     }
 

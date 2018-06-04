@@ -1,6 +1,7 @@
 package cr.ac.tec.ec.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by CASA on 5/26/2018.
@@ -14,6 +15,7 @@ public class Usuario implements Serializable{
     private String apellidos;
     private boolean admin;
     private static Usuario currentUser;
+    private ListaFavoritas listaFavoritas = new ListaFavoritas();
 
 
     public Usuario() {
@@ -24,6 +26,7 @@ public class Usuario implements Serializable{
         this.username = username;
         this.password = password;
         this.admin = false;
+        this.listaFavoritas = new ListaFavoritas();
     }
 
     public Usuario(int idUsuario, String username, String password, boolean admin) {
@@ -31,6 +34,7 @@ public class Usuario implements Serializable{
         this.username = username;
         this.password = password;
         this.admin = admin;
+        this.listaFavoritas = new ListaFavoritas();
     }
 
     public static Usuario getInstance() {
@@ -96,5 +100,13 @@ public class Usuario implements Serializable{
 
     public void setCurrentUser(Usuario currentUser) {
         this.currentUser = currentUser;
+    }
+
+    public ListaFavoritas getListaFavoritas() {
+        return listaFavoritas;
+    }
+
+    public void setListaFavoritas(ListaFavoritas listaFavoritas) {
+        this.listaFavoritas = listaFavoritas;
     }
 }

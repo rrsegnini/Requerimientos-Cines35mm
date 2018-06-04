@@ -2,6 +2,7 @@ package cr.ac.tec.ec.domain;
 
 import android.util.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +13,7 @@ import cr.ac.tec.ec.utility.MString;
  * Created by CASA on 5/26/2018.
  */
 
-public class ListaPelículas {
+public class ListaPelículas implements Serializable{
     private static List<Película> SysPelículas = new ArrayList<>();
 
     public static List<Película> getSysPelículas() {

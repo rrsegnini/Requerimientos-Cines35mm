@@ -1,5 +1,6 @@
 package cr.ac.tec.ec.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by CASA on 5/26/2018.
  */
 
-public class ListaUsuarios {
+public class ListaUsuarios implements Serializable {
     private static List<Usuario> ListaUsuarios = new ArrayList<>();
     private static List<Usuario> ListaUsuariosBloqueados = new ArrayList<>();
 

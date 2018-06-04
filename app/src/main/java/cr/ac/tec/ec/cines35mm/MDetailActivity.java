@@ -43,7 +43,7 @@ public class MDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mdetail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ListaFavoritas.refreshMovies();
+        Usuario.getInstance().getListaFavoritas().refreshMovies();
         setListeners();
 
 
@@ -52,7 +52,7 @@ public class MDetailActivity extends AppCompatActivity {
     @Override
     protected void onResume(){
         super.onResume();
-        ListaFavoritas.refreshMovies();
+        Usuario.getInstance().getListaFavoritas().refreshMovies();
         setReviews(_MovieId);
     }
 
@@ -63,14 +63,14 @@ public class MDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (!ListaFavoritas.movieExists(_MovieId)) {
+                if (!Usuario.getInstance().getListaFavoritas().movieExists(_MovieId)) {
                     Snackbar.make(view, "Add to favourite movies?", Snackbar.LENGTH_LONG)
                             .setAction("ADD", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
                                     try{
                                         Película p = ListaPelículas.getMovieById(_MovieId);
-                                        ListaFavoritas.addFavMovie(p);
+                                        Usuario.getInstance().getListaFavoritas().addFavMovie(p);
                                         cr.ac.tec.ec.data.Database.createFavMoviesData(MDetailActivity.this);
                                         Toast.makeText(MDetailActivity.this, "Movie added!",
                                                 Toast.LENGTH_LONG).show();
@@ -88,7 +88,7 @@ public class MDetailActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
                                     try {
-                                        ListaFavoritas.deleteMovie(_MovieId);
+                                        Usuario.getInstance().getListaFavoritas().deleteMovie(_MovieId);
                                         cr.ac.tec.ec.data.Database.createFavMoviesData(MDetailActivity.this);
                                         Toast.makeText(MDetailActivity.this, "Removed" +
                                                         " from Favourites!",

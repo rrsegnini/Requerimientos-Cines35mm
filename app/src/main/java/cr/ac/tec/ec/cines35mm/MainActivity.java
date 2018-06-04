@@ -31,6 +31,7 @@ import cr.ac.tec.ec.domain.ListaFavoritas;
 import cr.ac.tec.ec.domain.ListaPelículas;
 import cr.ac.tec.ec.domain.ListaRecomendaciones;
 import cr.ac.tec.ec.domain.Película;
+import cr.ac.tec.ec.domain.Usuario;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,11 +46,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        setMainScreen();
+    }
+
     private void setMainScreen(){
         ImageView img = findViewById(R.id.main_imgReco1);
 
         List<Película> sys_movies = ListaPelículas.getSysPelículas();
-        List<Película> fav_movies = ListaFavoritas.getFavMovies();
+        List<Película> fav_movies = Usuario.getInstance().getListaFavoritas().getFavMovies();
 
        Arrays.asList((ImageView) findViewById(R.id.main_imgReco1),
                 (ImageView) findViewById(R.id.main_imgRecent1));
@@ -89,24 +96,27 @@ public class MainActivity extends AppCompatActivity {
 
 
         ////////RECENTLY ADDED
-        if (fav_movies.size()>=3){
-            Película rp1 = fav_movies.get(0);
-            Película rp2 = fav_movies.get(1);
-            Película rp3 = fav_movies.get(2);
-            if (rp1!=null) {
+        for (int i=0;i<fav_movies.size();i++) {
+            Película rp1 = fav_movies.get(i);
+
+            if (i == 0) {
                 new DownloadImageTask((ImageView) findViewById(R.id.main_imgRecent1))
                         .execute(rp1.getPosterURL());
                 findViewById(R.id.main_imgRecent1).setTag(rp1.getIdPelícula());
             }
-            if (rp2!=null) {
+            if (i == 1) {
                 new DownloadImageTask((ImageView) findViewById(R.id.main_imgPrevRecent))
-                        .execute(rp2.getPosterURL());
-                findViewById(R.id.main_imgPrevRecent).setTag(rp2.getIdPelícula());
+                        .execute(rp1.getPosterURL());
+                findViewById(R.id.main_imgPrevRecent).setTag(rp1.getIdPelícula());
             }
-            if (rp3!=null) {
+            if (i == 2) {
                 new DownloadImageTask((ImageView) findViewById(R.id.main_imgNextRecent))
-                        .execute(rp3.getPosterURL());
-                findViewById(R.id.main_imgNextRecent).setTag(rp3.getIdPelícula());
+                        .execute(rp1.getPosterURL());
+                findViewById(R.id.main_imgNextRecent).setTag(rp1.getIdPelícula());
+            }
+
+            if (i==2){
+                break;
             }
         }
 
@@ -118,14 +128,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        //new DownloadImageTask((ImageView) findViewById(R.id.main_imgReco1))
-        //        .execute("https://image.ibb.co/kUBeVo/m2001.jpg");
-
-    }
 
     public void buttonOnClick(View v){
         Button fav = findViewById(R.id.main_btnFav);
